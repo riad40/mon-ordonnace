@@ -1,3 +1,3 @@
-const screenBackground = "#939393"
+const screenBackground = "#F6F7F8"
 
 export { screenBackground }
