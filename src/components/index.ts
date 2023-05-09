@@ -1,3 +1,3 @@
-import NavBar from "./common/NavBar"
+import NavBar from "./common/navbar/NavBar"
 
-export {NavBar}
+export { NavBar }
