@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         fontFamily: "SourceSansPro-Bold",
         color: "#000000",
         fontSize: 24,
-        marginBottom: 20,
+        marginBottom: 5,
     },
 })
 
