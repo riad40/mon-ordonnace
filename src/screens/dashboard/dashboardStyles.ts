@@ -9,6 +9,9 @@ const dashboardStyles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
     },
+    headingContainer: {
+        marginVertical: 10,
+    },
 })
 
 export default dashboardStyles

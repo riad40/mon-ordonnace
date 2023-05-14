@@ -1,14 +1,16 @@
 import { NavBar, Heading, StateCard } from "../../components"
 import { View, ScrollView } from "react-native"
 import styles from "../../assets/styles"
-import dashboardStyles from "../../assets/styles/dashboard"
+import dashboardStyles from "./dashboardStyles"
 
 const Dashboard = (): JSX.Element => {
     return (
         <ScrollView style={styles.container}>
             <NavBar />
             <View style={dashboardStyles.container}>
-                <Heading text="Tableau de bord" />
+                <View style={dashboardStyles.headingContainer}>
+                    <Heading text="Tableau de bord" />
+                </View>
                 <StateCard
                     state="Nombre de patients au total"
                     value="6"
