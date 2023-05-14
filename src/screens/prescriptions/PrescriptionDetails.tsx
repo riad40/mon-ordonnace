@@ -1,9 +1,21 @@
 import { View, Text } from "react-native"
+import { NavBar } from "../../components"
+import { NavigationProp } from "@react-navigation/native"
 
-const PrescriptionDetails = (): JSX.Element => {
+const PrescriptionDetails = ({ navigation }: { navigation: NavigationProp<any> }): JSX.Element => {
     return (
         <View>
-            <Text>Détails de la prescription</Text>
+            <NavBar navigation={navigation} />
+            <Text
+                style={{
+                    textAlign: "center",
+                    marginTop: 100,
+                    fontSize: 30,
+                    fontWeight: "bold",
+                    color: "#000",
+                }}>
+                Détails de l'ordonnance
+            </Text>
         </View>
     )
 }

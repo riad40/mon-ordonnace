@@ -1,7 +1,7 @@
-import { Dashboard } from "./src/screens"
+import MainNavigator from "./src/navigation/Navigator"
 
 const App = (): JSX.Element => {
-    return <Dashboard />
+    return <MainNavigator />
 }
 
 export default App

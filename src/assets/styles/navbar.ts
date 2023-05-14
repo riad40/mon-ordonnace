@@ -29,6 +29,17 @@ const navStyles = StyleSheet.create({
         width: 30,
         height: 30,
     },
+    backContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    backText: {
+        fontSize: 20,
+        color: "#18B1D4",
+        fontFamily: "SourceSansPro-SemiBold",
+        marginLeft: 5,
+        marginBottom: 3,
+    },
 })
 
 export default navStyles
