@@ -2,8 +2,9 @@ import { NavigationContainer } from "@react-navigation/native"
 import { createStackNavigator } from "@react-navigation/stack"
 import { Settings, Profile, EditProfile, EditClinic } from "../../../screens"
 import { stackNavigatorOptions } from "../../options"
+import { SettingsStackParamsList } from "../../../@types/navigation"
 
-const Stack = createStackNavigator()
+const Stack = createStackNavigator<SettingsStackParamsList>()
 
 const SettingsStack = () => {
     return (

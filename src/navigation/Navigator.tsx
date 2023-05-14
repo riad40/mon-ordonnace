@@ -3,8 +3,9 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
 import { PatientsStack, PrescriptionsStack, ProductsStack, SettingsStack } from "./stacks"
 import { Dashboard } from "../screens"
 import { TabIcon } from "../components"
+import { BottomTabsParamsList } from "../@types/navigation"
 
-const Tab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator<BottomTabsParamsList>()
 
 const MainNavigator = () => {
     return (
