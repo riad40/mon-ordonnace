@@ -1,7 +1,8 @@
-import { View } from "react-native"
+import { View, FlatList, ScrollView } from "react-native"
 import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard } from "../../../components"
 import { ProductsStackNavProps } from "../../../@types/navigation"
 import productsListStyles from "./productsListStyles"
+import products from "../../../helpers/data/products"
 
 const ProductsList = ({
     navigation,
@@ -9,7 +10,7 @@ const ProductsList = ({
     navigation: ProductsStackNavProps<"ProductsList">["navigation"]
 }): JSX.Element => {
     return (
-        <View>
+        <ScrollView nestedScrollEnabled={true}>
             <NavBar />
             <View style={productsListStyles.container}>
                 <View style={productsListStyles.wrapper}>
@@ -21,26 +22,21 @@ const ProductsList = ({
                 </View>
                 <SearchInput placeholder="Rechercher un produit" />
             </View>
-            <ProductCard
-                product={{
-                    name: "VIGOREX CO 50MG B1 COMP",
-                    type: "SILDENAFIL",
-                    therapeuticClass: "HORMONE THYROIDIENNE",
-                }}
-                onPress={() => navigation.navigate("ProductDetails", { productId: 1 })}
+
+            <FlatList
+                data={products}
+                renderItem={({ item }) => (
+                    <ProductCard
+                        product={item}
+                        onPress={() => navigation.navigate("ProductDetails", { productId: item.productId })}
+                    />
+                )}
             />
-            <ProductCard
-                product={{
-                    name: "VIGOREX CO 50MG B1 COMP",
-                    type: "SILDENAFIL",
-                    therapeuticClass: "HORMONE THYROIDIENNE",
-                }}
-                onPress={() => navigation.navigate("ProductDetails", { productId: 1 })}
-            />
+
             <View>
                 <TextButton text="+ Suggérer un produit" style={productsListStyles.btnCenter} />
             </View>
-        </View>
+        </ScrollView>
     )
 }
 

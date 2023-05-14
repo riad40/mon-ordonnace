@@ -6,10 +6,7 @@ const ProductCard = ({ product, onPress }: { product: any; onPress?: () => void 
             <View style={styles.card}>
                 <View>
                     <View style={styles.cardContent}>
-                        <Image
-                            source={product.image ? { uri: product.image } : require("../../assets/images/Profile.png")}
-                            style={styles.image}
-                        />
+                        <Image source={require("../../assets/images/Profile.png")} style={styles.image} />
                         <View style={styles.details}>
                             <Text style={styles.name}>{product.name}</Text>
                             <Text style={styles.type}>{product.type}</Text>
