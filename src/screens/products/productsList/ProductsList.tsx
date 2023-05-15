@@ -1,4 +1,4 @@
-import { View, FlatList, ScrollView } from "react-native"
+import { View, ScrollView } from "react-native"
 import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard } from "../../../components"
 import { ProductsStackNavProps } from "../../../@types/navigation"
 import productsListStyles from "./productsListStyles"
@@ -23,15 +23,13 @@ const ProductsList = ({
                 <SearchInput placeholder="Rechercher un produit" />
             </View>
 
-            <FlatList
-                data={products}
-                renderItem={({ item }) => (
-                    <ProductCard
-                        product={item}
-                        onPress={() => navigation.navigate("ProductDetails", { productId: item.productId })}
-                    />
-                )}
-            />
+            {products.map((product, index) => (
+                <ProductCard
+                    product={product}
+                    onPress={() => navigation.navigate("ProductDetails", { productId: product.productId })}
+                    key={index}
+                />
+            ))}
 
             <View>
                 <TextButton text="+ Suggérer un produit" style={productsListStyles.btnCenter} />
