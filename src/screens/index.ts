@@ -1,5 +1,5 @@
 import Dashboard from "./dashboard/Dashboard"
-import Patients from "./patients/Patients"
+import PatientsList from "./patients/patientsList/PatientsList"
 import PatientDetails from "./patients/PatientDetails"
 import Prescriptions from "./prescriptions/Prescriptions"
 import PrescriptionDetails from "./prescriptions/PrescriptionDetails"
@@ -13,7 +13,7 @@ import EditClinic from "./settings/EditClinic"
 
 export {
     Dashboard,
-    Patients,
+    PatientsList,
     PatientDetails,
     Prescriptions,
     PrescriptionDetails,

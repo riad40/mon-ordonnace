@@ -7,5 +7,19 @@ import TextButton from "./common/TextButton"
 import SearchInput from "./common/SearchInput"
 import ProductCard from "./products/ProductCard"
 import DetailsCard from "./products/DetailsCard"
+import Header from "./common/Header"
+import PatientCard from "./patients/PatientCard"
 
-export { NavBar, Heading, StateCard, TabIcon, SubHeading, TextButton, SearchInput, ProductCard, DetailsCard }
+export {
+    NavBar,
+    Heading,
+    StateCard,
+    TabIcon,
+    SubHeading,
+    TextButton,
+    SearchInput,
+    ProductCard,
+    DetailsCard,
+    Header,
+    PatientCard,
+}
