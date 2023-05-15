@@ -6,5 +6,6 @@ import SubHeading from "./common/SubHeading"
 import TextButton from "./common/TextButton"
 import SearchInput from "./common/SearchInput"
 import ProductCard from "./products/ProductCard"
+import DetailsCard from "./products/DetailsCard"
 
-export { NavBar, Heading, StateCard, TabIcon, SubHeading, TextButton, SearchInput, ProductCard }
+export { NavBar, Heading, StateCard, TabIcon, SubHeading, TextButton, SearchInput, ProductCard, DetailsCard }
