@@ -1,6 +1,6 @@
 import Dashboard from "./dashboard/Dashboard"
 import PatientsList from "./patients/patientsList/PatientsList"
-import PatientDetails from "./patients/PatientDetails"
+import PatientDetails from "./patients/patientDetails/PatientDetails"
 import Prescriptions from "./prescriptions/Prescriptions"
 import PrescriptionDetails from "./prescriptions/PrescriptionDetails"
 import AddPrescription from "./prescriptions/AddPrescription"

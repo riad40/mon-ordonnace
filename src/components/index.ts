@@ -9,6 +9,7 @@ import ProductCard from "./products/ProductCard"
 import DetailsCard from "./products/DetailsCard"
 import Header from "./common/Header"
 import PatientCard from "./patients/PatientCard"
+import PatientDetailsCard from "./patients/PatientDetailsCard"
 
 export {
     NavBar,
@@ -22,4 +23,5 @@ export {
     DetailsCard,
     Header,
     PatientCard,
+    PatientDetailsCard,
 }
