@@ -1,27 +1,31 @@
-import { View, Text, Image, StyleSheet } from "react-native"
+import { View, Text, Image, StyleSheet, Pressable } from "react-native"
 
 const PatientCard = ({
     patientName,
     patientAge,
     patientImage,
+    onPress,
 }: {
     patientName: string
     patientAge: number
     patientImage: any
+    onPress?: () => void
 }) => {
     return (
-        <View style={styles.container}>
-            <View style={styles.wrapper}>
-                <View style={styles.imageWrapper}>
-                    <Image source={patientImage} style={styles.image} />
+        <Pressable onPress={onPress}>
+            <View style={styles.container}>
+                <View style={styles.wrapper}>
+                    <View style={styles.imageWrapper}>
+                        <Image source={require("../../assets/images/patient-picture.png")} style={styles.image} />
+                    </View>
+                    <View style={styles.textWrapper}>
+                        <Text style={styles.name}>{patientName}</Text>
+                        <Text style={styles.age}>{patientAge} ans</Text>
+                    </View>
                 </View>
-                <View style={styles.textWrapper}>
-                    <Text style={styles.name}>{patientName}</Text>
-                    <Text style={styles.age}>{patientAge} ans</Text>
-                </View>
+                <Image source={require("../../assets/images/More.png")} />
             </View>
-            <Image source={require("../../assets/images/More.png")} />
-        </View>
+        </Pressable>
     )
 }
 
@@ -38,6 +42,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         paddingBottom: 10,
+        paddingTop: 10,
     },
     imageWrapper: {
         width: 50,
@@ -47,15 +52,15 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     image: {
-        width: 50,
-        height: 50,
+        width: "100%",
+        height: "100%",
         borderRadius: 20,
         resizeMode: "contain",
     },
     textWrapper: {
         marginLeft: 10,
         justifyContent: "space-between",
-        height: 50,
+        height: 45,
     },
     name: {
         fontFamily: "SourceSansPro-Bold",

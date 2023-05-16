@@ -3,6 +3,7 @@ import { NavBar, PatientCard } from "../../../components"
 import { PatientStackNavProps } from "../../../@types/navigation"
 import patientsListStyles from "./patientsListStyles"
 import { Header } from "../../../components"
+import patients from "../../../helpers/data/patients"
 
 const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"PatientsList">["navigation"] }) => {
     return (
@@ -15,11 +16,15 @@ const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"Patien
                 placeholder="Rechercher un patient"
             />
             <View style={patientsListStyles.container}>
-                <PatientCard
-                    patientName="Jean Dupont"
-                    patientAge={45}
-                    patientImage={require("../../../assets/images/patient-picture.png")}
-                />
+                {patients.map(patient => (
+                    <PatientCard
+                        key={patient.patientId}
+                        patientName={patient.name}
+                        patientAge={patient.age}
+                        patientImage={patient.image}
+                        onPress={() => navigation.navigate("PatientDetails", { patientId: patient.patientId })}
+                    />
+                ))}
             </View>
         </ScrollView>
     )
