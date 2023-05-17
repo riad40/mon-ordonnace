@@ -17,6 +17,7 @@ const PrescriptionsList = ({
                 subHeading="45 000 ordonnances"
                 textButton="+ Nouvelle ordonnance"
                 placeholder="Rechercher une ordonnance"
+                onPress={() => navigation.navigate("AddPrescription")}
             />
             <View style={prescriptionsListStyles.container}>
                 {prescriptions.map(prescription => (
