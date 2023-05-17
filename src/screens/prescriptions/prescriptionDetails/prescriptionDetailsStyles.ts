@@ -5,12 +5,23 @@ const prescriptionDetailsStyles = StyleSheet.create({
         backgroundColor: "#FFFFFF",
         marginVertical: 20,
         paddingVertical: 20,
+        width: "90%",
+        alignSelf: "center",
+        shadowColor: "#000000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.1,
+        shadowRadius: 4,
+        elevation: 5,
+        borderRadius: 5,
     },
     patientNameWrapper: {
         flexDirection: "row",
         alignItems: "center",
-        marginBottom: 10,
         paddingHorizontal: 20,
+        marginVertical: 10,
     },
     patientNameBold: {
         fontFamily: "SourceSansPro-Bold",
@@ -22,7 +33,7 @@ const prescriptionDetailsStyles = StyleSheet.create({
     },
     productsWrapper: {
         paddingHorizontal: 20,
-        marginBottom: 10,
+        marginVertical: 10,
     },
     productTitle: {
         fontFamily: "SourceSansPro-Bold",
@@ -37,12 +48,10 @@ const prescriptionDetailsStyles = StyleSheet.create({
     productsDosagesDateRange: {
         fontFamily: "SourceSansPro-SemiBold",
         fontSize: 16,
-        marginBottom: 10,
     },
     productsDosagesDosage: {
         fontFamily: "SourceSansPro-SemiBold",
         fontSize: 16,
-        marginBottom: 10,
     },
 })
 

@@ -12,6 +12,7 @@ import PatientCard from "./patients/PatientCard"
 import PatientDetailsCard from "./patients/PatientDetailsCard"
 import PrescriptionCard from "./prescriptions/PrescriptionCard"
 import PrescriptionHeader from "./prescriptions/PrescriptionHeader"
+import WideButton from "./common/WideButton"
 
 export {
     NavBar,
@@ -28,4 +29,5 @@ export {
     PatientDetailsCard,
     PrescriptionCard,
     PrescriptionHeader,
+    WideButton,
 }
