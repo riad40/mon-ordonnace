@@ -1,7 +1,7 @@
 import Dashboard from "./dashboard/Dashboard"
 import PatientsList from "./patients/patientsList/PatientsList"
 import PatientDetails from "./patients/patientDetails/PatientDetails"
-import Prescriptions from "./prescriptions/Prescriptions"
+import PrescriptionsList from "./prescriptions/prescriptionsList/PrescriptionsList"
 import PrescriptionDetails from "./prescriptions/PrescriptionDetails"
 import AddPrescription from "./prescriptions/AddPrescription"
 import Products from "./products/productsList/ProductsList"
@@ -15,7 +15,7 @@ export {
     Dashboard,
     PatientsList,
     PatientDetails,
-    Prescriptions,
+    PrescriptionsList,
     PrescriptionDetails,
     AddPrescription,
     Products,

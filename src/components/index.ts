@@ -10,6 +10,7 @@ import DetailsCard from "./products/DetailsCard"
 import Header from "./common/Header"
 import PatientCard from "./patients/PatientCard"
 import PatientDetailsCard from "./patients/PatientDetailsCard"
+import PrescriptionCard from "./prescriptions/PrescriptionCard"
 
 export {
     NavBar,
@@ -24,4 +25,5 @@ export {
     Header,
     PatientCard,
     PatientDetailsCard,
+    PrescriptionCard,
 }
