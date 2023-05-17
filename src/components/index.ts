@@ -11,6 +11,7 @@ import Header from "./common/Header"
 import PatientCard from "./patients/PatientCard"
 import PatientDetailsCard from "./patients/PatientDetailsCard"
 import PrescriptionCard from "./prescriptions/PrescriptionCard"
+import PrescriptionHeader from "./prescriptions/PrescriptionHeader"
 
 export {
     NavBar,
@@ -26,4 +27,5 @@ export {
     PatientCard,
     PatientDetailsCard,
     PrescriptionCard,
+    PrescriptionHeader,
 }
