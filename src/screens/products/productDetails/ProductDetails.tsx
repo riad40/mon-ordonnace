@@ -22,7 +22,7 @@ const ProductDetails = ({
                 details={[
                     {
                         title: "Nom du produit",
-                        value: "DOLIPRANE CO 500MG B20 COMP",
+                        value: "DOLIPRANE CO 500MG B20",
                     },
                     {
                         title: "DCI",
