@@ -8,8 +8,8 @@ import Products from "./products/productsList/ProductsList"
 import ProductDetails from "./products/productDetails/ProductDetails"
 import SettingsList from "./settings/settingsList/SettingsList"
 import Profile from "./settings/profileScreen/Profile"
-import EditProfile from "./settings/EditProfile"
-import EditClinic from "./settings/EditClinic"
+import EditProfile from "./settings/EditProfileScreen/EditProfile"
+import EditClinic from "./settings/EditClinicScreen/EditClinic"
 
 export {
     Dashboard,
