@@ -6,10 +6,10 @@ import PrescriptionDetails from "./prescriptions/prescriptionDetails/Prescriptio
 import AddPrescription from "./prescriptions/addPrescription/AddPrescription"
 import Products from "./products/productsList/ProductsList"
 import ProductDetails from "./products/productDetails/ProductDetails"
-import Settings from "./settings/Settings"
-import Profile from "./settings/Profile"
-import EditProfile from "./settings/EditProfile"
-import EditClinic from "./settings/EditClinic"
+import SettingsList from "./settings/settingsList/SettingsList"
+import Profile from "./settings/profileScreen/Profile"
+import EditProfile from "./settings/EditProfileScreen/EditProfile"
+import EditClinic from "./settings/EditClinicScreen/EditClinic"
 
 export {
     Dashboard,
@@ -20,7 +20,7 @@ export {
     AddPrescription,
     Products,
     ProductDetails,
-    Settings,
+    SettingsList,
     Profile,
     EditProfile,
     EditClinic,

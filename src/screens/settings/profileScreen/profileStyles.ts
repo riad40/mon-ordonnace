@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native"
 
-const patientDetailsStyles = StyleSheet.create({
+const profileStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
@@ -21,15 +21,6 @@ const patientDetailsStyles = StyleSheet.create({
         marginBottom: 10,
         color: "#000",
     },
-    type: {
-        fontSize: 16,
-        fontFamily: "SourceSansPro-SemiBold",
-        textTransform: "uppercase",
-        color: "#B9B9B9",
-    },
-    bottom: {
-        marginVertical: 20,
-    },
 })
 
-export default patientDetailsStyles
+export default profileStyles

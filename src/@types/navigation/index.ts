@@ -41,7 +41,7 @@ export type ProductsStackNavProps<T extends keyof ProductsStackParamsList> = {
 /** ========================  SETTINGS STACK TYPES  ======================== */
 
 export type SettingsStackParamsList = {
-    Settings: undefined
+    SettingsList: undefined
     Profile: undefined
     EditProfile: undefined
     EditClinic: undefined
