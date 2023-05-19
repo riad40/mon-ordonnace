@@ -41,6 +41,7 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
                         value: "EE 123456",
                     },
                 ]}
+                onPress={() => navigation.navigate("EditProfile")}
             />
             {/* Cabinet */}
             <DetailsCard
@@ -72,6 +73,7 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
                         value: "06 12 34 56 78",
                     },
                 ]}
+                onPress={() => navigation.navigate("EditClinic")}
             />
         </ScrollView>
     )
