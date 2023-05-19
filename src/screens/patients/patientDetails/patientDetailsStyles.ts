@@ -27,23 +27,8 @@ const patientDetailsStyles = StyleSheet.create({
         textTransform: "uppercase",
         color: "#B9B9B9",
     },
-    prescriptionsCard: {
-        width: "100%",
-        padding: 30,
-        borderTopColor: "#E8E8E8",
-        borderTopWidth: 1,
-        borderBottomColor: "#E8E8E8",
-        borderBottomWidth: 1,
+    bottom: {
         marginVertical: 20,
-        flexDirection: "row",
-        alignItems: "center",
-        justifyContent: "space-between",
-        backgroundColor: "#fff",
-    },
-    prescriptionsCardHeading: {
-        fontFamily: "SourceSansPro-Bold",
-        fontSize: 16,
-        color: "#000",
     },
 })
 

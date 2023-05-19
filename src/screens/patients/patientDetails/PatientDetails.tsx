@@ -1,6 +1,6 @@
 import { View, Text, Image, ScrollView } from "react-native"
 import { NavigationProp } from "@react-navigation/native"
-import { NavBar, PatientDetailsCard } from "../../../components"
+import { NavBar, PatientDetailsCard, SimpleCard } from "../../../components"
 import patientDetailsStyles from "./patientDetailsStyles"
 
 const PatientDetails = ({ navigation }: { navigation: NavigationProp<any> }): JSX.Element => {
@@ -45,13 +45,9 @@ const PatientDetails = ({ navigation }: { navigation: NavigationProp<any> }): JS
                     },
                 ]}
             />
-
-            <View style={patientDetailsStyles.prescriptionsCard}>
-                <Text style={patientDetailsStyles.prescriptionsCardHeading}>Ordonnances</Text>
-                <Image source={require("../../../assets/images/Chevron-Right.png")} />
+            <View style={patientDetailsStyles.bottom}>
+                <SimpleCard text="Ordonnances" />
             </View>
-
-            <View style={{ height: 30 }}></View>
         </ScrollView>
     )
 }
