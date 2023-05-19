@@ -6,7 +6,7 @@ import PrescriptionDetails from "./prescriptions/prescriptionDetails/Prescriptio
 import AddPrescription from "./prescriptions/addPrescription/AddPrescription"
 import Products from "./products/productsList/ProductsList"
 import ProductDetails from "./products/productDetails/ProductDetails"
-import Settings from "./settings/Settings"
+import SettingsList from "./settings/settingsList/SettingsList"
 import Profile from "./settings/Profile"
 import EditProfile from "./settings/EditProfile"
 import EditClinic from "./settings/EditClinic"
@@ -20,7 +20,7 @@ export {
     AddPrescription,
     Products,
     ProductDetails,
-    Settings,
+    SettingsList,
     Profile,
     EditProfile,
     EditClinic,

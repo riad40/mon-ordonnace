@@ -17,6 +17,7 @@ import CustomContainer from "./common/CustomContainer"
 import SelectOption from "./prescriptions/SelectOption"
 import PatientOption from "./prescriptions/PatientOption"
 import CustomTextInput from "./common/CustomTextInput"
+import SimpleCard from "./common/SimpleCard"
 
 export {
     NavBar,
@@ -38,4 +39,5 @@ export {
     SelectOption,
     PatientOption,
     CustomTextInput,
+    SimpleCard,
 }
