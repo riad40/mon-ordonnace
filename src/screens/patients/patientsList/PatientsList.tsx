@@ -19,9 +19,7 @@ const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"Patien
                 {patients.map(patient => (
                     <PatientCard
                         key={patient.patientId}
-                        patientName={patient.name}
-                        patientAge={patient.age}
-                        patientImage={patient.image}
+                        patient={patient}
                         onPress={() => navigation.navigate("PatientDetails", { patientId: patient.patientId })}
                     />
                 ))}

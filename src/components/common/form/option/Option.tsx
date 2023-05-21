@@ -16,7 +16,7 @@ const Option = ({
         <View style={[optionStyles.optionContainer, style]}>
             {!noImg && (
                 <Image
-                    source={require("../../../../assets/images/patient-picture.png")}
+                    source={{ uri: "https://www.w3schools.com/w3images/avatar2.png" }}
                     style={optionStyles.optionsImage}
                 />
             )}

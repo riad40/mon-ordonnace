@@ -1,30 +1,18 @@
-import { View, Text, Image, StyleSheet, Pressable } from "react-native"
+import { View, Text, Image, Pressable } from "react-native"
 import patientCardStyles from "./patientCardStyles"
+import { Patient } from "../../../@types/patients"
 
-const PatientCard = ({
-    patientName,
-    patientAge,
-    patientImage,
-    onPress,
-}: {
-    patientName: string
-    patientAge: number
-    patientImage: any
-    onPress?: () => void
-}) => {
+const PatientCard = ({ patient, onPress }: { patient: Patient; onPress?: () => void }) => {
     return (
         <Pressable onPress={onPress}>
             <View style={patientCardStyles.container}>
                 <View style={patientCardStyles.wrapper}>
                     <View style={patientCardStyles.imageWrapper}>
-                        <Image
-                            source={require("../../../assets/images/patient-picture.png")}
-                            style={patientCardStyles.image}
-                        />
+                        <Image source={{ uri: patient.image }} style={patientCardStyles.image} />
                     </View>
                     <View style={patientCardStyles.textWrapper}>
-                        <Text style={patientCardStyles.name}>{patientName}</Text>
-                        <Text style={patientCardStyles.age}>{patientAge} ans</Text>
+                        <Text style={patientCardStyles.name}>{patient.name}</Text>
+                        <Text style={patientCardStyles.age}>{patient.age} ans</Text>
                     </View>
                 </View>
                 <Image source={require("../../../assets/images/More.png")} />

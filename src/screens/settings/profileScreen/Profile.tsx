@@ -8,7 +8,7 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
         <ScrollView>
             <NavBar navigation={navigation} />
             <View style={profileStyles.container}>
-                <Image source={require("../../../assets/images/patient-picture.png")} style={profileStyles.image} />
+                <Image source={{ uri: "https://www.w3schools.com/w3images/avatar2.png" }} style={profileStyles.image} />
                 <TextButton text="Changer photo de profile" />
             </View>
             {/* General Infos */}

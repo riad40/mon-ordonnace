@@ -23,10 +23,7 @@ const PrescriptionCard = ({
                 <View style={prescriptionCardStyles.container}>
                     <View style={prescriptionCardStyles.wrapper}>
                         <View style={prescriptionCardStyles.imageWrapper}>
-                            <Image
-                                source={require("../../../assets/images/prescription-profile.png")}
-                                style={prescriptionCardStyles.image}
-                            />
+                            <Image source={{ uri: prescription.image }} style={prescriptionCardStyles.image} />
                         </View>
                         <View style={prescriptionCardStyles.textWrapper}>
                             <Text style={prescriptionCardStyles.name}>{prescription.patientName}</Text>

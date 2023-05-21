@@ -12,7 +12,10 @@ const ProductDetails = ({
         <ScrollView>
             <NavBar navigation={navigation} />
             <View style={productDetailsStyles.container}>
-                <Image source={require("../../../assets/images/Profile.png")} style={productDetailsStyles.image} />
+                <Image
+                    source={{ uri: "https://www.w3schools.com/w3images/avatar2.png" }}
+                    style={productDetailsStyles.image}
+                />
                 <Text style={productDetailsStyles.name}>DOLIPRANE CO 500MG B20 COMP</Text>
                 <Text style={productDetailsStyles.type}>PARACETAMOL</Text>
             </View>
