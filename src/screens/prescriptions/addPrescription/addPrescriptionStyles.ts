@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+import colors from "../../../constants/colors"
 
 const addPrescriptionStyles = StyleSheet.create({
     container: {
@@ -22,14 +23,14 @@ const addPrescriptionStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "flex-end",
         paddingHorizontal: 22,
-        marginVertical: 20,
+        marginVertical: 10,
     },
     formWrapper: {
         paddingHorizontal: 20,
         marginVertical: 10,
     },
     button: {
-        backgroundColor: "#18B1D4",
+        backgroundColor: colors.coldBlue,
         borderRadius: 25,
         paddingVertical: 10,
         alignItems: "center",
