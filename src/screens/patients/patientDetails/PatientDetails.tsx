@@ -9,7 +9,7 @@ const PatientDetails = ({ navigation }: { navigation: NavigationProp<any> }): JS
             <NavBar navigation={navigation} />
             <View style={patientDetailsStyles.container}>
                 <Image
-                    source={require("../../../assets/images/patient-picture.png")}
+                    source={{ uri: "https://www.w3schools.com/w3images/avatar2.png" }}
                     style={patientDetailsStyles.image}
                 />
                 <Text style={patientDetailsStyles.name}>Khalid Redouani</Text>

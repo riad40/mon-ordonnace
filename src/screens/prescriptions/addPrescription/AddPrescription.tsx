@@ -44,7 +44,7 @@ const AddPrescription = ({
             <View style={addPrescriptionStyles.container}>
                 <PrescriptionHeader date="12/12/2020" />
                 <View style={addPrescriptionStyles.leftTextButtonWrapper}>
-                    <TextButton text="Choisir un modèle" />
+                    <TextButton text="Choisir un modèle" style={{ paddingHorizontal: 0 }} />
                     <Ionicons name="caret-down-outline" size={20} color="#18B1D4" style={{ paddingTop: 2 }} />
                 </View>
                 <View style={addPrescriptionStyles.formWrapper}>

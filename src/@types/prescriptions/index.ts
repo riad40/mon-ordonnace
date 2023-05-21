@@ -3,6 +3,7 @@ type Prescription = {
     patientName: string
     date: string
     status: PrescriptionStatus
+    image: string
 }
 
 type PrescriptionStatus = "Brouillon" | "Enregistrée"
