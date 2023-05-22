@@ -1,9 +1,13 @@
 import { View, Text, Image, ScrollView } from "react-native"
-import { NavigationProp } from "@react-navigation/native"
 import { NavBar, SimpleCard, DetailsCard } from "../../../components"
+import { PatientStackNavProps } from "../../../navigation/stacks/patientStack/@types"
 import patientDetailsStyles from "./patientDetailsStyles"
 
-const PatientDetails = ({ navigation }: { navigation: NavigationProp<any> }): JSX.Element => {
+const PatientDetails = ({
+    navigation,
+}: {
+    navigation: PatientStackNavProps<"PatientDetails">["navigation"]
+}): JSX.Element => {
     return (
         <ScrollView>
             <NavBar navigation={navigation} />

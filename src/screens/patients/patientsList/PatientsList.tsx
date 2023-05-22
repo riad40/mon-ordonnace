@@ -1,6 +1,6 @@
 import { ScrollView, View } from "react-native"
 import { NavBar, PatientCard } from "../../../components"
-import { PatientStackNavProps } from "../../../@types/navigation"
+import { PatientStackNavProps } from "../../../navigation/stacks/patientStack/@types"
 import patientsListStyles from "./patientsListStyles"
 import { Header } from "../../../components"
 import patients from "../../../helpers/data/patients"

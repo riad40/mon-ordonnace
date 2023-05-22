@@ -1,5 +1,5 @@
 import { View, Text, Pressable, Image, StyleSheet } from "react-native"
-import { Prescription } from "../../../@types/prescriptions"
+import { Prescription } from "../../../@types"
 import prescriptionCardStyles from "./prescriptionCardStyles"
 
 const PrescriptionCard = ({

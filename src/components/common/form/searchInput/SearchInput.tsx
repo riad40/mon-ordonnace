@@ -6,7 +6,7 @@ const SearchInput = ({ placeholder, onChangeText }: { placeholder: string; onCha
         <View style={searchInputStyles.container}>
             <View style={searchInputStyles.inputContainer}>
                 <TextInput placeholder={placeholder} onChangeText={onChangeText} style={searchInputStyles.input} />
-                {/* <Image source={require("../../../../assets/images/Search.png")} style={searchInputStyles.icon} /> */}
+                <Image source={require("../../../../assets/images/Search.png")} style={searchInputStyles.icon} />
             </View>
         </View>
     )

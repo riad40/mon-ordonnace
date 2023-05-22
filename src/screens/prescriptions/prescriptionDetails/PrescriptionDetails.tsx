@@ -1,6 +1,6 @@
-import { View, Text, Pressable, ScrollView } from "react-native"
+import { View, Text, ScrollView } from "react-native"
 import { NavBar, PrescriptionHeader, WideButton } from "../../../components"
-import { PrescreptionsStackNavProps } from "../../../@types/navigation"
+import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import prescriptionDetailsStyles from "./prescriptionDetailsStyles"
 
 const PrescriptionDetails = ({

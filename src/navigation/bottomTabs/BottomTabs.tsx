@@ -1,9 +1,9 @@
 import { NavigationContainer } from "@react-navigation/native"
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs"
-import { PatientsStack, PrescriptionsStack, ProductsStack, SettingsStack } from "./stacks"
-import { Dashboard } from "../screens"
-import { TabIcon } from "../components"
-import { BottomTabsParamsList } from "../@types/navigation"
+import { PatientsStack, PrescriptionsStack, ProductsStack, SettingsStack } from "../stacks"
+import { Dashboard } from "../../screens"
+import { TabIcon } from "../../components"
+import { BottomTabsParamsList } from "./@types"
 
 const Tab = createBottomTabNavigator<BottomTabsParamsList>()
 
@@ -19,8 +19,8 @@ const MainNavigator = () => {
                         tabBarIcon: ({ focused }) => (
                             <TabIcon
                                 focused={focused}
-                                icon={require("../assets/images/home-inactive.png")}
-                                iconActive={require("../assets/images/home-active.png")}
+                                icon={require("../../assets/images/dashboard-inactive.png")}
+                                iconActive={require("../../assets/images/dashbaord-active.png")}
                             />
                         ),
                     }}
@@ -33,8 +33,8 @@ const MainNavigator = () => {
                         tabBarIcon: ({ focused }) => (
                             <TabIcon
                                 focused={focused}
-                                icon={require("../assets/images/pills-inactive.png")}
-                                iconActive={require("../assets/images/pills-active.png")}
+                                icon={require("../../assets/images/products-inactive.png")}
+                                iconActive={require("../../assets/images/products-active.png")}
                             />
                         ),
                     }}
@@ -47,8 +47,8 @@ const MainNavigator = () => {
                         tabBarIcon: ({ focused }) => (
                             <TabIcon
                                 focused={focused}
-                                icon={require("../assets/images/prescription-inactive.png")}
-                                iconActive={require("../assets/images/prescription-active.png")}
+                                icon={require("../../assets/images/prescription-inactive.png")}
+                                iconActive={require("../../assets/images/prescription-active.png")}
                             />
                         ),
                     }}
@@ -61,8 +61,8 @@ const MainNavigator = () => {
                         tabBarIcon: ({ focused }) => (
                             <TabIcon
                                 focused={focused}
-                                icon={require("../assets/images/patient-inactive.png")}
-                                iconActive={require("../assets/images/patient-active.png")}
+                                icon={require("../../assets/images/user-inactive.png")}
+                                iconActive={require("../../assets/images/user-active.png")}
                             />
                         ),
                     }}
@@ -75,8 +75,8 @@ const MainNavigator = () => {
                         tabBarIcon: ({ focused }) => (
                             <TabIcon
                                 focused={focused}
-                                icon={require("../assets/images/settings-inactive.png")}
-                                iconActive={require("../assets/images/settings-active.png")}
+                                icon={require("../../assets/images/settings-inactive.png")}
+                                iconActive={require("../../assets/images/settings-active.png")}
                             />
                         ),
                     }}

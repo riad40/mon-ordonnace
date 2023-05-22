@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from "react-native"
 import { NavBar, Heading, CustomContainer, CustomTextInput, WideButton, SelectOption } from "../../../components"
-import { SettingsStackNavProps } from "../../../@types/navigation"
+import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import editClinicStyles from "./editClinicStyles"
 
 const EditClinic = ({ navigation }: { navigation: SettingsStackNavProps<"EditClinic">["navigation"] }): JSX.Element => {

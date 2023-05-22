@@ -1,6 +1,6 @@
 import { View, Text, ScrollView } from "react-native"
 import { NavBar, Heading, CustomContainer, CustomTextInput, WideButton } from "../../../components"
-import { SettingsStackNavProps } from "../../../@types/navigation"
+import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import editProfileStyles from "./editProfileStyles"
 
 const EditProfile = ({

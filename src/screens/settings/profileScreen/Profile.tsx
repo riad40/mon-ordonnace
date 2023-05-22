@@ -1,6 +1,6 @@
 import { View, Image, ScrollView } from "react-native"
 import { NavBar, TextButton, DetailsCard } from "../../../components"
-import { SettingsStackNavProps } from "../../../@types/navigation"
+import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import profileStyles from "./profileStyles"
 
 const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">["navigation"] }): JSX.Element => {
