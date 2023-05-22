@@ -8,7 +8,7 @@ import {
     CustomTextInput,
     WideButton,
 } from "../../../components"
-import { PrescreptionsStackNavProps } from "../../../@types/navigation"
+import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import addPrescriptionStyles from "./addPrescriptionStyles"
 import Ionicons from "react-native-vector-icons/Ionicons"
 

@@ -1,6 +1,6 @@
-import { View, Text, Button } from "react-native"
+import { View } from "react-native"
 import { NavBar, SimpleCard, Heading } from "../../../components"
-import { SettingsStackNavProps } from "../../../@types/navigation"
+import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import settingsListStyles from "./settingsListStyles"
 
 const SettingsList = ({

@@ -1,6 +1,6 @@
 import { View, Text, ScrollView, Image } from "react-native"
 import { NavBar, DetailsCard } from "../../../components"
-import { ProductsStackNavProps } from "../../../@types/navigation"
+import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productDetailsStyles from "./productDetailsStyles"
 
 const ProductDetails = ({

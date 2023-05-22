@@ -1,5 +1,5 @@
 import { Image, Text, Pressable, View } from "react-native"
-import { Product } from "../../../@types/products"
+import { Product } from "../../../@types/"
 import productCardStyles from "./productCardStyles"
 
 const ProductCard = ({ product, onPress }: { product: Product; onPress?: () => void }) => {

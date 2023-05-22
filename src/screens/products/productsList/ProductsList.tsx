@@ -1,6 +1,6 @@
 import { View, ScrollView } from "react-native"
 import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard } from "../../../components"
-import { ProductsStackNavProps } from "../../../@types/navigation"
+import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productsListStyles from "./productsListStyles"
 import products from "../../../helpers/data/products"
 

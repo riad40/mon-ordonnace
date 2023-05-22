@@ -1,6 +1,6 @@
 import { View, Text, Image, Pressable } from "react-native"
 import patientCardStyles from "./patientCardStyles"
-import { Patient } from "../../../@types/patients"
+import { Patient } from "../../../@types"
 
 const PatientCard = ({ patient, onPress }: { patient: Patient; onPress?: () => void }) => {
     return (

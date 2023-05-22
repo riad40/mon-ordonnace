@@ -1,6 +1,6 @@
 import { View, ScrollView } from "react-native"
 import { NavBar, Header, PrescriptionCard, TextButton } from "../../../components"
-import { PrescreptionsStackNavProps } from "../../../@types/navigation"
+import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import prescriptionsListStyles from "./prescriptionsListStyles"
 import prescriptions from "../../../helpers/data/prescriptions"
 
