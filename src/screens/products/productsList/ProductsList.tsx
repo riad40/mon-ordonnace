@@ -4,6 +4,7 @@ import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/
 import productsListStyles from "./productsListStyles"
 import products from "../../../helpers/data/products"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const ProductsList = ({
     navigation,
@@ -39,7 +40,7 @@ const ProductsList = ({
                 <View>
                     <TextButton text="+ Suggérer un produit" style={productsListStyles.btnCenter} />
                 </View>
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

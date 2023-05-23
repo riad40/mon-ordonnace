@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const prescriptionCardStyles = StyleSheet.create({
     mainContainer: {
@@ -15,12 +16,12 @@ const prescriptionCardStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingVertical: 10,
+        paddingVertical: wp("5%"),
     },
     imageWrapper: {
-        width: 50,
-        height: 50,
-        borderRadius: 10,
+        width: wp("12%"),
+        height: hp("6%"),
+        borderRadius: hp("1%"),
         justifyContent: "center",
         alignItems: "center",
     },
@@ -28,12 +29,12 @@ const prescriptionCardStyles = StyleSheet.create({
         width: "100%",
         height: "100%",
         resizeMode: "contain",
-        borderRadius: 10,
+        borderRadius: hp("1%"),
     },
     textWrapper: {
-        marginLeft: 10,
+        marginLeft: wp("2.5%"),
         justifyContent: "space-between",
-        height: 45,
+        height: hp("5%"),
     },
     name: {
         fontFamily: "SourceSansPro-Bold",
@@ -49,8 +50,8 @@ const prescriptionCardStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingLeft: 50,
-        paddingBottom: 20,
+        paddingLeft: wp("12%"),
+        paddingBottom: hp("2%"),
     },
     prescriptionId: {
         fontFamily: "SourceSansPro-SemiBold",

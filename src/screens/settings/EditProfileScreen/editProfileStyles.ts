@@ -1,12 +1,14 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const editProfileStyles = StyleSheet.create({
     container: {
-        padding: 20,
+        padding: wp("5%"),
         backgroundColor: "#fff",
+        height: "100%",
     },
     formContainer: {
-        marginTop: 20,
+        marginTop: hp("2%"),
     },
 })
 

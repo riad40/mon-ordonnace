@@ -1,14 +1,15 @@
 import { StyleSheet } from "react-native"
 import colors from "../../../../constants/colors"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const wideButtonStyles = StyleSheet.create({
     button: {
         backgroundColor: colors.coldBlue,
-        paddingVertical: 20,
+        paddingVertical: hp("2.5%"),
         width: "90%",
         alignSelf: "center",
-        marginVertical: 10,
-        borderRadius: 10,
+        marginVertical: hp("1.5%"),
+        borderRadius: hp("1.5%"),
     },
     buttonText: {
         fontFamily: "SourceSansPro-SemiBold",

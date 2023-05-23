@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const patientCardStyles = StyleSheet.create({
     container: {
@@ -12,26 +13,25 @@ const patientCardStyles = StyleSheet.create({
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        paddingBottom: 10,
-        paddingTop: 10,
+        paddingBottom: hp("1.5%"),
+        paddingTop: hp("1.5%"),
     },
     imageWrapper: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        width: wp("12%"),
+        height: hp("6%"),
         justifyContent: "center",
         alignItems: "center",
     },
     image: {
         width: "100%",
         height: "100%",
-        borderRadius: 25,
+        borderRadius: hp("8%"),
         resizeMode: "contain",
     },
     textWrapper: {
-        marginLeft: 10,
+        marginLeft: wp("2.5%"),
         justifyContent: "space-between",
-        height: 45,
+        height: hp("5%"),
     },
     name: {
         fontFamily: "SourceSansPro-Bold",

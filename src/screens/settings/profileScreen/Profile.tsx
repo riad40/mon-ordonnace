@@ -3,6 +3,7 @@ import { NavBar, TextButton, DetailsCard } from "../../../components"
 import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import profileStyles from "./profileStyles"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">["navigation"] }): JSX.Element => {
     return (
@@ -80,7 +81,7 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
                     ]}
                     onPress={() => navigation.navigate("EditClinic")}
                 />
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

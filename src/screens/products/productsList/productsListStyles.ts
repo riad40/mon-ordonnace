@@ -1,8 +1,9 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const productsListStyles = StyleSheet.create({
     container: {
-        padding: 20,
+        padding: wp("5%"),
     },
     wrapper: {
         flexDirection: "row",
@@ -11,7 +12,7 @@ const productsListStyles = StyleSheet.create({
     },
     btnCenter: {
         alignSelf: "center",
-        marginVertical: 10,
+        marginVertical: hp("2%"),
     },
 })
 

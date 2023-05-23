@@ -12,6 +12,7 @@ import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescript
 import addPrescriptionStyles from "./addPrescriptionStyles"
 import Ionicons from "react-native-vector-icons/Ionicons"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const AddPrescription = ({
     navigation,
@@ -77,7 +78,7 @@ const AddPrescription = ({
                     </View>
                 </View>
                 <WideButton text="Enregistrer" />
-                <View style={{ height: 70 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

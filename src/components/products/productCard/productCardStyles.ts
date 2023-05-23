@@ -1,31 +1,32 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const productCardStyles = StyleSheet.create({
     card: {
         backgroundColor: "#FFFFFF",
-        padding: 20,
+        padding: wp("5%"),
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "flex-start",
         borderTopColor: "#E6E6E6",
-        borderTopWidth: 1,
+        borderTopWidth: hp("0.2%"),
         borderBottomColor: "#E6E6E6",
-        borderBottomWidth: 2,
+        borderBottomWidth: hp("0.1%"),
     },
     image: {
-        width: 55,
-        height: 55,
+        width: wp("13%"),
+        height: hp("6.3%"),
         resizeMode: "contain",
-        borderRadius: 5,
+        borderRadius: hp("1%"),
     },
     cardContent: {
         flexDirection: "row",
         alignItems: "center",
     },
     details: {
-        marginLeft: 10,
+        marginLeft: wp("2.5%"),
         justifyContent: "space-between",
-        height: 50,
+        height: hp("6%"),
     },
     name: {
         fontFamily: "SourceSansPro-Bold",
@@ -42,7 +43,7 @@ const productCardStyles = StyleSheet.create({
     therapeuticClass: {
         flexDirection: "row",
         alignItems: "center",
-        marginTop: 10,
+        marginTop: hp("1.5%"),
     },
 })
 

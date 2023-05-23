@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const customTextInputStyles = StyleSheet.create({
     input: {
@@ -6,10 +7,10 @@ const customTextInputStyles = StyleSheet.create({
         fontSize: 16,
         color: "#000000",
         backgroundColor: "#FFFFFF",
-        borderRadius: 10,
-        paddingHorizontal: 20,
-        paddingVertical: 10,
-        height: 75,
+        borderRadius: hp("1.5%"), // 10
+        paddingHorizontal: wp("5%"), // 40
+        paddingVertical: hp("1.5%"), // 10
+        height: hp("9%"), // 75
     },
 })
 

@@ -4,6 +4,7 @@ import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescript
 import prescriptionsListStyles from "./prescriptionsListStyles"
 import prescriptions from "../../../helpers/data/prescriptions"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const PrescriptionsList = ({
     navigation,
@@ -41,7 +42,7 @@ const PrescriptionsList = ({
                 <View>
                     <TextButton text="+ Nouvelle ordonnance" style={prescriptionsListStyles.btnCenter} />
                 </View>
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

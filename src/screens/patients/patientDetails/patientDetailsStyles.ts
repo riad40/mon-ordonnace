@@ -1,24 +1,25 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const patientDetailsStyles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
-        padding: 20,
+        padding: wp("5%"),
     },
     image: {
-        width: 100,
-        height: 100,
-        borderRadius: 50,
-        marginBottom: 20,
+        width: wp("35%"),
+        height: hp("18%"),
+        borderRadius: hp("10%"),
+        marginBottom: hp("2%"),
         resizeMode: "contain",
     },
     name: {
         fontSize: 20,
         fontFamily: "SourceSansPro-Bold",
         textTransform: "uppercase",
-        marginBottom: 10,
+        marginBottom: hp("1%"),
         color: "#000",
     },
     type: {
@@ -28,7 +29,7 @@ const patientDetailsStyles = StyleSheet.create({
         color: "#B9B9B9",
     },
     bottom: {
-        marginVertical: 20,
+        marginVertical: hp("2%"),
     },
 })
 
