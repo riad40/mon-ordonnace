@@ -9,6 +9,10 @@ const patientsListStyles = StyleSheet.create({
         borderTopColor: "#ddd",
         borderTopWidth: 1,
     },
+    btnCenter: {
+        alignSelf: "center",
+        marginVertical: 10,
+    },
 })
 
 export default patientsListStyles

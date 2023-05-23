@@ -7,7 +7,7 @@ const wideButtonStyles = StyleSheet.create({
         paddingVertical: 20,
         width: "90%",
         alignSelf: "center",
-        marginVertical: 20,
+        marginVertical: 10,
         borderRadius: 10,
     },
     buttonText: {

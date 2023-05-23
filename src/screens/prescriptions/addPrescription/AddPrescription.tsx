@@ -1,4 +1,4 @@
-import { View, ScrollView, Touchable, TouchableOpacity, Text } from "react-native"
+import { View, ScrollView, TouchableOpacity, Text, SafeAreaView } from "react-native"
 import {
     NavBar,
     PrescriptionHeader,
@@ -11,6 +11,7 @@ import {
 import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import addPrescriptionStyles from "./addPrescriptionStyles"
 import Ionicons from "react-native-vector-icons/Ionicons"
+import styles from "../../../assets/styles"
 
 const AddPrescription = ({
     navigation,
@@ -39,43 +40,46 @@ const AddPrescription = ({
     ]
 
     return (
-        <ScrollView nestedScrollEnabled={true}>
+        <SafeAreaView>
             <NavBar navigation={navigation} />
-            <View style={addPrescriptionStyles.container}>
-                <PrescriptionHeader date="12/12/2020" />
-                <View style={addPrescriptionStyles.leftTextButtonWrapper}>
-                    <TextButton text="Choisir un modèle" style={{ paddingHorizontal: 0 }} />
-                    <Ionicons name="caret-down-outline" size={20} color="#18B1D4" style={{ paddingTop: 2 }} />
+            <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
+                <View style={addPrescriptionStyles.container}>
+                    <PrescriptionHeader date="12/12/2020" />
+                    <View style={addPrescriptionStyles.leftTextButtonWrapper}>
+                        <TextButton text="Choisir un modèle" style={{ paddingHorizontal: 0 }} />
+                        <Ionicons name="caret-down-outline" size={20} color="#18B1D4" style={{ paddingTop: 2 }} />
+                    </View>
+                    <View style={addPrescriptionStyles.formWrapper}>
+                        {/* Select patient */}
+                        <CustomContainer
+                            label="Patient"
+                            element={<SelectOption data={patients} initialValue={patients[0].name} noImg={false} />}
+                        />
+                        {/* Select product */}
+                        <CustomContainer
+                            label="Produit"
+                            element={<SelectOption data={products} initialValue={products[0].name} noImg={true} />}
+                        />
+                        {/* Select dosage */}
+                        <CustomContainer
+                            label="Posologie"
+                            element={<SelectOption data={dosages} initialValue={dosages[0].name} noImg={true} />}
+                        />
+                        {/* Enter duration */}
+                        <CustomContainer
+                            label="Durée du traitement"
+                            element={<CustomTextInput placeholder="Durée du traitement" />}
+                        />
+                        <TouchableOpacity style={addPrescriptionStyles.button}>
+                            <Text style={addPrescriptionStyles.buttonText}>Ajouter un produit</Text>
+                        </TouchableOpacity>
+                        <TextButton text="+ Rédiger un commentaire" />
+                    </View>
                 </View>
-                <View style={addPrescriptionStyles.formWrapper}>
-                    {/* Select patient */}
-                    <CustomContainer
-                        label="Patient"
-                        element={<SelectOption data={patients} initialValue={patients[0].name} noImg={false} />}
-                    />
-                    {/* Select product */}
-                    <CustomContainer
-                        label="Produit"
-                        element={<SelectOption data={products} initialValue={products[0].name} noImg={true} />}
-                    />
-                    {/* Select dosage */}
-                    <CustomContainer
-                        label="Posologie"
-                        element={<SelectOption data={dosages} initialValue={dosages[0].name} noImg={true} />}
-                    />
-                    {/* Enter duration */}
-                    <CustomContainer
-                        label="Durée du traitement"
-                        element={<CustomTextInput placeholder="Durée du traitement" />}
-                    />
-                    <TouchableOpacity style={addPrescriptionStyles.button}>
-                        <Text style={addPrescriptionStyles.buttonText}>Ajouter un produit</Text>
-                    </TouchableOpacity>
-                    <TextButton text="+ Rédiger un commentaire" />
-                </View>
-            </View>
-            <WideButton text="Enregistrer" />
-        </ScrollView>
+                <WideButton text="Enregistrer" />
+                <View style={{ height: 50 }} />
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 

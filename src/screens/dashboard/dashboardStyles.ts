@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native"
 const dashboardStyles = StyleSheet.create({
     container: {
         padding: 20,
+        marginBottom: 50,
     },
     wrapper: {
         flexDirection: "row",

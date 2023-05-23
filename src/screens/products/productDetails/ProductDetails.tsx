@@ -1,7 +1,8 @@
-import { View, Text, ScrollView, Image } from "react-native"
+import { View, Text, ScrollView, Image, SafeAreaView } from "react-native"
 import { NavBar, DetailsCard } from "../../../components"
 import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productDetailsStyles from "./productDetailsStyles"
+import styles from "../../../assets/styles"
 
 const ProductDetails = ({
     navigation,
@@ -9,59 +10,60 @@ const ProductDetails = ({
     navigation: ProductsStackNavProps<"ProductDetails">["navigation"]
 }): JSX.Element => {
     return (
-        <ScrollView>
+        <SafeAreaView>
             <NavBar navigation={navigation} />
-            <View style={productDetailsStyles.container}>
-                <Image
-                    source={{ uri: "https://www.w3schools.com/w3images/avatar2.png" }}
-                    style={productDetailsStyles.image}
+            <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
+                <View style={productDetailsStyles.container}>
+                    <Image
+                        source={{ uri: "https://www.w3schools.com/w3images/avatar2.png" }}
+                        style={productDetailsStyles.image}
+                    />
+                    <Text style={productDetailsStyles.name}>DOLIPRANE CO 500MG B20 COMP</Text>
+                    <Text style={productDetailsStyles.type}>PARACETAMOL</Text>
+                </View>
+                {/* General informations */}
+                <DetailsCard
+                    heading="Informations générales"
+                    details={[
+                        {
+                            title: "Nom du produit",
+                            value: "DOLIPRANE CO 500MG B20",
+                        },
+                        {
+                            title: "DCI",
+                            value: "PHENOBARBITAL",
+                        },
+                        {
+                            title: "Classe thérapeutique",
+                            value: "ANALGESIQUE ANTIPYRETIQUE / VASOCONSTRICTEUR",
+                        },
+                        {
+                            title: "Laboratoire",
+                            value: "MAPHAR",
+                        },
+                    ]}
                 />
-                <Text style={productDetailsStyles.name}>DOLIPRANE CO 500MG B20 COMP</Text>
-                <Text style={productDetailsStyles.type}>PARACETAMOL</Text>
-            </View>
-            {/* General informations */}
-            <DetailsCard
-                heading="Informations générales"
-                details={[
-                    {
-                        title: "Nom du produit",
-                        value: "DOLIPRANE CO 500MG B20",
-                    },
-                    {
-                        title: "DCI",
-                        value: "PHENOBARBITAL",
-                    },
-                    {
-                        title: "Classe thérapeutique",
-                        value: "ANALGESIQUE ANTIPYRETIQUE / VASOCONSTRICTEUR",
-                    },
-                    {
-                        title: "Laboratoire",
-                        value: "MAPHAR",
-                    },
-                ]}
-            />
-            {/* Dosages */}
-            <DetailsCard
-                heading="Posologies"
-                details={[
-                    {
-                        title: "Adulte",
-                        value: "2 comprimés après repas",
-                    },
-                    {
-                        title: "Enfant",
-                        value: "1 comprimé après repas",
-                    },
-                    {
-                        title: "Nourissant",
-                        value: "Prendre pendant 2 semaines Après le petit-déjeuner",
-                    },
-                ]}
-            />
-
-            <View style={{ height: 30 }}></View>
-        </ScrollView>
+                {/* Dosages */}
+                <DetailsCard
+                    heading="Posologies"
+                    details={[
+                        {
+                            title: "Adulte",
+                            value: "2 comprimés après repas",
+                        },
+                        {
+                            title: "Enfant",
+                            value: "1 comprimé après repas",
+                        },
+                        {
+                            title: "Nourissant",
+                            value: "Prendre pendant 2 semaines Après le petit-déjeuner",
+                        },
+                    ]}
+                />
+                <View style={{ height: 50 }} />
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 

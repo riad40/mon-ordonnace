@@ -11,7 +11,7 @@ const productsListStyles = StyleSheet.create({
     },
     btnCenter: {
         alignSelf: "center",
-        marginVertical: 20,
+        marginVertical: 10,
     },
 })
 
