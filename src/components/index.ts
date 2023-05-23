@@ -13,7 +13,7 @@ import PrescriptionHeader from "./prescriptions/prescriptionHeader/PrescriptionH
 import WideButton from "./common/buttons/wideButton/WideButton"
 import CustomContainer from "./common/form/customContainer/CustomContainer"
 import SelectOption from "./common/form/selectOption/SelectOption"
-import PatientOption from "./common/form/option/Option"
+import Option from "./common/form/option/Option"
 import CustomTextInput from "./common/form/customTextInput/CustomTextInput"
 import SimpleCard from "./common/cards/simpleCard/SimpleCard"
 import DetailsCard from "./common/cards/detailsCard/DetailsCard"
@@ -34,7 +34,7 @@ export {
     WideButton,
     CustomContainer,
     SelectOption,
-    PatientOption,
+    Option,
     CustomTextInput,
     SimpleCard,
     DetailsCard,

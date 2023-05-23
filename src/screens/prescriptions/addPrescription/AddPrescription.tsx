@@ -77,7 +77,7 @@ const AddPrescription = ({
                     </View>
                 </View>
                 <WideButton text="Enregistrer" />
-                <View style={{ height: 50 }} />
+                <View style={{ height: 70 }} />
             </ScrollView>
         </SafeAreaView>
     )
