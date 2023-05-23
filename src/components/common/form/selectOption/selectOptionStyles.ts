@@ -27,7 +27,7 @@ const selectOptionStyles = StyleSheet.create({
         borderTopRightRadius: 20,
         padding: 20,
         paddingTop: 0,
-        maxHeight: "90%",
+        height: "50%",
     },
     closeModal: {
         alignSelf: "center",
