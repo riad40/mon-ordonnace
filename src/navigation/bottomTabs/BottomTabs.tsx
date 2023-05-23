@@ -10,7 +10,9 @@ const Tab = createBottomTabNavigator<BottomTabsParamsList>()
 const MainNavigator = () => {
     return (
         <NavigationContainer>
-            <Tab.Navigator initialRouteName="Dashboard" screenOptions={{ headerShown: false, tabBarShowLabel: false }}>
+            <Tab.Navigator
+                initialRouteName="Dashboard"
+                screenOptions={{ headerShown: false, tabBarShowLabel: false, tabBarHideOnKeyboard: true }}>
                 {/* Dashboard screen */}
                 <Tab.Screen
                     name="Dashboard"
