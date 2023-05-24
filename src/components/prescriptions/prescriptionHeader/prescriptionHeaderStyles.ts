@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 import colors from "../../../constants/colors"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14 } from "../../../constants/fontSize"
 
 const prescriptionHeaderStyles = StyleSheet.create({
     container: {
@@ -16,7 +17,7 @@ const prescriptionHeaderStyles = StyleSheet.create({
     },
     title: {
         fontFamily: "SourceSansPro-Bold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#FFFFFF",
         textTransform: "uppercase",
         paddingLeft: wp("3%"),
@@ -28,7 +29,7 @@ const prescriptionHeaderStyles = StyleSheet.create({
     },
     date: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#516783",
         paddingRight: wp("3%"),
         textAlign: "right",

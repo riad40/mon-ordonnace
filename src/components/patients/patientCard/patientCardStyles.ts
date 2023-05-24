@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14 } from "../../../constants/fontSize"
 
 const patientCardStyles = StyleSheet.create({
     container: {
@@ -35,12 +36,12 @@ const patientCardStyles = StyleSheet.create({
     },
     name: {
         fontFamily: "SourceSansPro-Bold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#000000",
     },
     age: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#B9B9B9",
     },
 })

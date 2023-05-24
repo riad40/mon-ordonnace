@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14 } from "../../../../constants/fontSize"
 
 const searchInputStyles = StyleSheet.create({
     container: {
@@ -26,7 +27,7 @@ const searchInputStyles = StyleSheet.create({
     input: {
         flex: 1,
         fontFamily: "SourceSansPro-Regular",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#939393",
     },
 })

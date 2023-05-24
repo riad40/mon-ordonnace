@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14 } from "../../../constants/fontSize"
 
 const prescriptionDetailsStyles = StyleSheet.create({
     container: {
@@ -26,11 +27,11 @@ const prescriptionDetailsStyles = StyleSheet.create({
     },
     patientNameBold: {
         fontFamily: "SourceSansPro-Bold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
     },
     patientName: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
     },
     productsWrapper: {
         paddingHorizontal: wp("5%"),
@@ -38,7 +39,7 @@ const prescriptionDetailsStyles = StyleSheet.create({
     },
     productTitle: {
         fontFamily: "SourceSansPro-Bold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         marginBottom: hp("1.5%"),
         textTransform: "uppercase",
     },
@@ -48,11 +49,11 @@ const prescriptionDetailsStyles = StyleSheet.create({
     },
     productsDosagesDateRange: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
     },
     productsDosagesDosage: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
     },
 })
 

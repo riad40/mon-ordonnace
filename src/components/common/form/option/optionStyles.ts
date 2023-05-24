@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_12 } from "../../../../constants/fontSize"
 
 const optionStyles = StyleSheet.create({
     optionContainer: {
@@ -14,7 +15,7 @@ const optionStyles = StyleSheet.create({
     },
     optionsText: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 14,
+        fontSize: FONT_SIZE_12,
         color: "#000000",
     },
     optionsImage: {

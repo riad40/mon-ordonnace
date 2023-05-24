@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14 } from "../../../constants/fontSize"
 
 const productCardStyles = StyleSheet.create({
     card: {
@@ -30,13 +31,13 @@ const productCardStyles = StyleSheet.create({
     },
     name: {
         fontFamily: "SourceSansPro-Bold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#000000",
         textTransform: "uppercase",
     },
     type: {
         fontFamily: "SourceSansPro-Regular",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#A2A2A2",
         textTransform: "uppercase",
     },

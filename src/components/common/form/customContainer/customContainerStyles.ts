@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14 } from "../../../../constants/fontSize"
 
 const customContainerStyles = StyleSheet.create({
     container: {
@@ -18,7 +19,7 @@ const customContainerStyles = StyleSheet.create({
     },
     label: {
         fontFamily: "SourceSansPro-Regular",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#746A6A",
         marginBottom: hp("1%"),
     },

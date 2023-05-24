@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14, FONT_SIZE_12 } from "../../../constants/fontSize"
 
 const prescriptionCardStyles = StyleSheet.create({
     mainContainer: {
@@ -38,12 +39,12 @@ const prescriptionCardStyles = StyleSheet.create({
     },
     name: {
         fontFamily: "SourceSansPro-Bold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#000000",
     },
     date: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#B9B9B9",
     },
     statuswrapper: {
@@ -55,12 +56,12 @@ const prescriptionCardStyles = StyleSheet.create({
     },
     prescriptionId: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#939393",
     },
     status: {
         fontFamily: "SourceSansPro-Bold",
-        fontSize: 14,
+        fontSize: FONT_SIZE_12,
         color: "#FFFFFF",
     },
 })

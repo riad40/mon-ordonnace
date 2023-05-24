@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native"
 import colors from "../../../../constants/colors"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14 } from "../../../../constants/fontSize"
 
 const textButtonStyles = StyleSheet.create({
     button: {
@@ -11,7 +12,7 @@ const textButtonStyles = StyleSheet.create({
     buttonText: {
         fontFamily: "SourceSansPro-SemiBold",
         color: colors.coldBlue,
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
     },
 })
 
