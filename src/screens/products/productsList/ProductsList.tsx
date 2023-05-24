@@ -1,8 +1,10 @@
-import { View, ScrollView } from "react-native"
+import { View, ScrollView, SafeAreaView, FlatList } from "react-native"
 import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard } from "../../../components"
 import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productsListStyles from "./productsListStyles"
 import products from "../../../helpers/data/products"
+import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const ProductsList = ({
     navigation,
@@ -10,31 +12,37 @@ const ProductsList = ({
     navigation: ProductsStackNavProps<"ProductsList">["navigation"]
 }): JSX.Element => {
     return (
-        <ScrollView nestedScrollEnabled={true}>
+        <SafeAreaView>
             <NavBar />
-            <View style={productsListStyles.container}>
-                <View style={productsListStyles.wrapper}>
-                    <View>
-                        <Heading text="Produits" />
-                        <SubHeading text="45 300 Produits" />
+            <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
+                <View style={productsListStyles.container}>
+                    <View style={productsListStyles.wrapper}>
+                        <View>
+                            <Heading text="Produits" />
+                            <SubHeading text="45 300 Produits" />
+                        </View>
+                        <TextButton text="+ Suggérer un produit" />
                     </View>
-                    <TextButton text="+ Suggérer un produit" />
+                    <SearchInput placeholder="Rechercher un produit" />
                 </View>
-                <SearchInput placeholder="Rechercher un produit" />
-            </View>
 
-            {products.map((product, index) => (
-                <ProductCard
-                    product={product}
-                    onPress={() => navigation.navigate("ProductDetails", { productId: product.productId })}
-                    key={index}
+                <FlatList
+                    data={products}
+                    keyExtractor={item => item.productId}
+                    renderItem={({ item }) => (
+                        <ProductCard
+                            product={item}
+                            onPress={() => navigation.navigate("ProductDetails", { productId: item.productId })}
+                        />
+                    )}
                 />
-            ))}
 
-            <View>
-                <TextButton text="+ Suggérer un produit" style={productsListStyles.btnCenter} />
-            </View>
-        </ScrollView>
+                <View>
+                    <TextButton text="+ Suggérer un produit" style={productsListStyles.btnCenter} />
+                </View>
+                <View style={{ marginTop: hp("10%") }} />
+            </ScrollView>
+        </SafeAreaView>
     )
 }
 

@@ -1,21 +1,30 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const selectOptionStyles = StyleSheet.create({
     button: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "space-between",
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        height: 75,
-        zIndex: 1,
+        paddingHorizontal: wp("5%"),
+        paddingVertical: hp("1.5%"),
+        height: hp("8.5%"),
     },
-    options: {
+    modal: {
+        justifyContent: "flex-end",
+        margin: 0,
+    },
+    modalContainer: {
         backgroundColor: "#FFFFFF",
-        borderColor: "#C6C6C6",
-        borderWidth: 1,
-        borderRadius: 10,
-        height: 150,
+        borderTopLeftRadius: hp("2%"),
+        borderTopRightRadius: hp("2%"),
+        padding: wp("5%"),
+        paddingTop: 0,
+        height: "50%",
+    },
+    closeModal: {
+        alignSelf: "center",
+        padding: wp("2%"),
     },
 })
 

@@ -1,8 +1,10 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const dashboardStyles = StyleSheet.create({
     container: {
-        padding: 20,
+        padding: wp("5%"),
+        marginBottom: hp("10%"),
     },
     wrapper: {
         flexDirection: "row",
@@ -10,7 +12,7 @@ const dashboardStyles = StyleSheet.create({
         alignItems: "center",
     },
     headingContainer: {
-        marginVertical: 10,
+        marginVertical: hp("1%"),
     },
 })
 

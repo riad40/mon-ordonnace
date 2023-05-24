@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native"
+import { FONT_SIZE_14 } from "../../../../constants/fontSize"
 
 const simpleCardStyles = StyleSheet.create({
     simpleCard: {
@@ -15,7 +16,7 @@ const simpleCardStyles = StyleSheet.create({
     },
     simpleCardHeading: {
         fontFamily: "SourceSansPro-Bold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#000",
     },
 })

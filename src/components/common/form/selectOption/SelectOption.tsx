@@ -1,8 +1,10 @@
 import { useState } from "react"
 import { TouchableOpacity, View, ScrollView } from "react-native"
 import Ionicons from "react-native-vector-icons/Ionicons"
-import { PatientOption } from "../../.."
+import { Option, SearchInput } from "../../../"
 import selectOptionStyles from "./selectOptionStyles"
+import Modal from "react-native-modal"
+import Ionicos from "react-native-vector-icons/Ionicons"
 
 const SelectOption = ({
     initialValue,
@@ -25,21 +27,30 @@ const SelectOption = ({
     return (
         <View>
             <TouchableOpacity style={selectOptionStyles.button} onPress={() => setShow(!show)}>
-                <PatientOption patietName={value.name} style={{ borderBottomWidth: 0 }} noImg={noImg} />
+                <Option patietName={value.name} style={{ borderBottomWidth: 0 }} noImg={noImg} />
                 <Ionicons name="chevron-down-outline" size={20} color="#DBDBDB" />
             </TouchableOpacity>
             {show && (
-                <ScrollView nestedScrollEnabled={true} style={selectOptionStyles.options}>
-                    {data?.map(item => (
-                        <TouchableOpacity
-                            onPress={() => {
-                                onSelect(item)
-                                setShow(false)
-                            }}>
-                            <PatientOption patietName={item.name} noImg={noImg} />
+                <Modal
+                    isVisible={show}
+                    onBackdropPress={() => setShow(false)}
+                    onBackButtonPress={() => setShow(false)}
+                    style={selectOptionStyles.modal}>
+                    <View style={selectOptionStyles.modalContainer}>
+                        <TouchableOpacity onPress={() => setShow(false)} style={selectOptionStyles.closeModal}>
+                            <Ionicos name="chevron-down-circle-outline" size={30} color="#000" />
                         </TouchableOpacity>
-                    ))}
-                </ScrollView>
+
+                        <SearchInput placeholder="Rechercher" />
+                        <ScrollView>
+                            {data?.map((item, index) => (
+                                <TouchableOpacity key={index} onPress={() => onSelect(item)}>
+                                    <Option patietName={item.name} noImg={noImg} />
+                                </TouchableOpacity>
+                            ))}
+                        </ScrollView>
+                    </View>
+                </Modal>
             )}
         </View>
     )

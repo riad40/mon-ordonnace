@@ -1,28 +1,29 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14, FONT_SIZE_18 } from "../../../constants/fontSize"
 
 const productDetailsStyles = StyleSheet.create({
     container: {
-        flex: 1,
         backgroundColor: "#fff",
         alignItems: "center",
-        padding: 20,
+        padding: wp("5%"),
     },
     image: {
-        width: 100,
-        height: 100,
-        borderRadius: 10,
-        marginBottom: 20,
+        width: wp("26%"),
+        height: hp("13%"),
+        borderRadius: hp("13%"),
+        marginBottom: hp("2.5%"),
         resizeMode: "contain",
     },
     name: {
-        fontSize: 20,
+        fontSize: FONT_SIZE_18,
         fontFamily: "SourceSansPro-Bold",
         textTransform: "uppercase",
-        marginBottom: 10,
+        marginBottom: hp("1.5%"),
         color: "#000",
     },
     type: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         fontFamily: "SourceSansPro-SemiBold",
         textTransform: "uppercase",
         color: "#B9B9B9",

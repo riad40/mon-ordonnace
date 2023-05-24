@@ -1,11 +1,12 @@
 import { StyleSheet } from "react-native"
 import colors from "../../../../constants/colors"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const navStyles = StyleSheet.create({
     container: {
         width: "100%",
-        paddingHorizontal: 20,
-        paddingVertical: 10,
+        paddingHorizontal: wp("5%"),
+        paddingVertical: hp("1.5%"),
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
@@ -16,30 +17,30 @@ const navStyles = StyleSheet.create({
         alignItems: "center",
     },
     boldTitle: {
-        fontSize: 20,
+        fontSize: wp("5%"),
         color: colors.coldBlue,
         fontFamily: "OpenSans-Bold",
     },
     lightTitle: {
         fontWeight: "300",
-        fontSize: 20,
+        fontSize: wp("5%"),
         color: colors.coldBlue,
         fontFamily: "OpenSans-Regular",
     },
     icon: {
-        width: 30,
-        height: 30,
+        width: wp("5%"),
+        height: hp("2.5%"),
     },
     backContainer: {
         flexDirection: "row",
         alignItems: "center",
     },
     backText: {
-        fontSize: 20,
+        fontSize: wp("5%"),
         color: colors.coldBlue,
         fontFamily: "SourceSansPro-SemiBold",
-        marginLeft: 5,
-        marginBottom: 3,
+        marginLeft: wp("0.7%"),
+        marginBottom: hp("0.4%"),
     },
 })
 

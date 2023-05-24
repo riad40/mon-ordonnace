@@ -1,9 +1,9 @@
 import { StyleSheet } from "react-native"
-import { screenBackground } from "../../constants/colors"
+import colors from "../../constants/colors"
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: screenBackground,
+    appContainer: {
+        backgroundColor: colors.screenBackground,
         width: "100%",
         height: "100%",
     },
