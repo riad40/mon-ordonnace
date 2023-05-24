@@ -4,6 +4,7 @@ import { PatientStackNavProps } from "../../../navigation/stacks/patientStack/@t
 import patientsListStyles from "./patientsListStyles"
 import patients from "../../../helpers/data/patients"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"PatientsList">["navigation"] }) => {
     return (
@@ -32,7 +33,7 @@ const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"Patien
                 <View>
                     <TextButton text="+ Ajouter un patient" style={patientsListStyles.btnCenter} />
                 </View>
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

@@ -1,11 +1,13 @@
 import { StyleSheet } from "react-native"
 import colors from "../../../constants/colors"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { FONT_SIZE_14 } from "../../../constants/fontSize"
 
 const addPrescriptionStyles = StyleSheet.create({
     container: {
         backgroundColor: "#FFFFFF",
-        marginVertical: 20,
-        paddingVertical: 20,
+        marginVertical: hp("2%"),
+        paddingVertical: hp("2%"),
         width: "90%",
         alignSelf: "center",
         shadowColor: "#000000",
@@ -16,29 +18,29 @@ const addPrescriptionStyles = StyleSheet.create({
         shadowOpacity: 0.1,
         shadowRadius: 4,
         elevation: 5,
-        borderRadius: 5,
+        borderRadius: hp("1%"),
     },
     leftTextButtonWrapper: {
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
-        paddingHorizontal: 22,
-        marginVertical: 10,
+        paddingHorizontal: wp("5%"),
+        marginVertical: hp("1%"),
     },
     formWrapper: {
-        paddingHorizontal: 20,
-        marginVertical: 10,
+        paddingHorizontal: wp("5%"),
+        marginVertical: hp("1%"),
     },
     button: {
         backgroundColor: colors.coldBlue,
-        borderRadius: 25,
-        paddingVertical: 10,
+        borderRadius: hp("3%"),
+        paddingVertical: hp("1.5%"),
         alignItems: "center",
-        marginBottom: 20,
+        marginBottom: hp("1%"),
     },
     buttonText: {
         fontFamily: "SourceSansPro-SemiBold",
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         color: "#FFFFFF",
     },
 })

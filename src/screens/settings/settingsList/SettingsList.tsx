@@ -3,6 +3,7 @@ import { NavBar, SimpleCard, Heading } from "../../../components"
 import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import settingsListStyles from "./settingsListStyles"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const SettingsList = ({
     navigation,
@@ -18,7 +19,7 @@ const SettingsList = ({
                 </View>
                 <SimpleCard text="Profile" onPress={() => navigation.navigate("Profile")} />
                 <SimpleCard text="Changer mon compte" />
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

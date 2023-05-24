@@ -3,6 +3,7 @@ import { NavBar, Heading, CustomContainer, CustomTextInput, WideButton } from ".
 import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import editProfileStyles from "./editProfileStyles"
 import styles from "../../../assets/styles"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const EditProfile = ({
     navigation,
@@ -34,7 +35,7 @@ const EditProfile = ({
                         <WideButton text="Enregistrer" />
                     </View>
                 </View>
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

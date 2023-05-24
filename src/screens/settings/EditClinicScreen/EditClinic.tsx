@@ -3,6 +3,7 @@ import { NavBar, Heading, CustomContainer, CustomTextInput, WideButton, SelectOp
 import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import editClinicStyles from "./editClinicStyles"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const EditClinic = ({ navigation }: { navigation: SettingsStackNavProps<"EditClinic">["navigation"] }): JSX.Element => {
     const cities = [
@@ -41,7 +42,7 @@ const EditClinic = ({ navigation }: { navigation: SettingsStackNavProps<"EditCli
                         <WideButton text="Enregistrer" />
                     </View>
                 </View>
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

@@ -1,4 +1,5 @@
 import { View, Image, StyleSheet } from "react-native"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const TabIcon = ({ focused, icon, iconActive }: { focused: boolean; icon: any; iconActive: any }) => {
     // styles
@@ -6,7 +7,7 @@ const TabIcon = ({ focused, icon, iconActive }: { focused: boolean; icon: any; i
         container: {
             height: "100%",
             borderTopColor: focused ? "#18B1D4" : "#fff",
-            borderTopWidth: 5,
+            borderTopWidth: hp("0.7%"),
             justifyContent: "center",
             alignItems: "center",
             width: "100%",

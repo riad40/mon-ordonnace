@@ -3,6 +3,7 @@ import { NavBar, PrescriptionHeader, WideButton } from "../../../components"
 import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import prescriptionDetailsStyles from "./prescriptionDetailsStyles"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const PrescriptionDetails = ({
     navigation,
@@ -33,7 +34,7 @@ const PrescriptionDetails = ({
                     </View>
                 </View>
                 <WideButton text="Imprimer" />
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

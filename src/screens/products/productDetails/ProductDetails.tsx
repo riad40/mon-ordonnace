@@ -3,6 +3,7 @@ import { NavBar, DetailsCard } from "../../../components"
 import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productDetailsStyles from "./productDetailsStyles"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const ProductDetails = ({
     navigation,
@@ -61,7 +62,7 @@ const ProductDetails = ({
                         },
                     ]}
                 />
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )

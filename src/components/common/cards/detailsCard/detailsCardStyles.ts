@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native"
 import colors from "../../../../constants/colors"
+import { FONT_SIZE_14, FONT_SIZE_18 } from "../../../../constants/fontSize"
 
 const detailsCardStyles = StyleSheet.create({
     detailsContainer: {
@@ -17,7 +18,7 @@ const detailsCardStyles = StyleSheet.create({
         alignItems: "center",
     },
     detailsHeading: {
-        fontSize: 20,
+        fontSize: FONT_SIZE_18,
         fontFamily: "SourceSansPro-Bold",
         color: "#000",
         paddingBottom: 10,
@@ -31,12 +32,12 @@ const detailsCardStyles = StyleSheet.create({
         borderBottomWidth: 1,
     },
     detailsText: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         fontFamily: "SourceSansPro-SemiBold",
         color: "#676767",
     },
     detailsDarkText: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         fontFamily: "SourceSansPro-SemiBold",
         color: "#000",
         width: "50%",
@@ -47,7 +48,7 @@ const detailsCardStyles = StyleSheet.create({
         alignItems: "center",
     },
     editText: {
-        fontSize: 16,
+        fontSize: FONT_SIZE_14,
         fontFamily: "SourceSansPro-Bold",
         color: colors.coldBlue,
     },

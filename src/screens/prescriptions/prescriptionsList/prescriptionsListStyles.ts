@@ -1,17 +1,18 @@
 import { StyleSheet } from "react-native"
+import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const prescriptionsListStyles = StyleSheet.create({
     container: {
         backgroundColor: "#fff",
         borderBottomColor: "#ddd",
-        borderBottomWidth: 1,
-        paddingHorizontal: 20,
+        borderBottomWidth: hp("0.2%"),
+        paddingHorizontal: wp("5%"),
         borderTopColor: "#ddd",
-        borderTopWidth: 1,
+        borderTopWidth: hp("0.2%"),
     },
     btnCenter: {
         alignSelf: "center",
-        marginVertical: 10,
+        marginVertical: hp("2%"),
     },
 })
 

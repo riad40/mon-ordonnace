@@ -3,6 +3,7 @@ import { NavBar, SimpleCard, DetailsCard } from "../../../components"
 import { PatientStackNavProps } from "../../../navigation/stacks/patientStack/@types"
 import patientDetailsStyles from "./patientDetailsStyles"
 import styles from "../../../assets/styles"
+import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 
 const PatientDetails = ({
     navigation,
@@ -55,7 +56,7 @@ const PatientDetails = ({
                 <View style={patientDetailsStyles.bottom}>
                     <SimpleCard text="Ordonnances" />
                 </View>
-                <View style={{ height: 50 }} />
+                <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>
     )
