@@ -14,7 +14,7 @@ interface DashboardState {
         week: number
         month: number
     }
-    productsCount: number
+    productsCount: { total: number }
     loading: boolean
     error: string | null
 }
@@ -32,8 +32,7 @@ const initialState: DashboardState = {
         week: 0,
         month: 0,
     },
-    productsCount: 0,
-
+    productsCount: { total: 0 },
     loading: false,
     error: null,
 }
