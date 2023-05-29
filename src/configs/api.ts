@@ -1,6 +1,7 @@
 import axios, { AxiosInstance } from "axios"
+import API_URL from "./API_URL"
 
-const API_BASE_URL = "https://starter-express-api-production-d9f5.up.railway.app/api"
+const API_BASE_URL = `${API_URL}api/`
 
 // Create axios instance
 const api: AxiosInstance = axios.create({
