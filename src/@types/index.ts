@@ -1,9 +1,14 @@
 type Product = {
-    productId: number
+    _id: string
     name: string
-    type: string
-    therapeuticClass: string
-    image: string
+    dci: string
+    classTherapeutic: string
+    laboratory: string
+    avatar: string
+    dosage: {
+        ageGroup: string
+        instructions: string
+    }[]
 }
 
 type Prescription = {
