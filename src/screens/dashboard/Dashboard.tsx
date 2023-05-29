@@ -1,9 +1,40 @@
 import { NavBar, Heading, StateCard } from "../../components"
-import { View, ScrollView, SafeAreaView } from "react-native"
+import { View, ScrollView, SafeAreaView, Text } from "react-native"
 import styles from "../../assets/styles"
 import dashboardStyles from "./dashboardStyles"
+import { useEffect } from "react"
+import { useAppSelector, useAppDispatch } from "../../state/hooks"
+import { getPatientsCount } from "../../services/dashboardServices"
 
 const Dashboard = (): JSX.Element => {
+    const { patientsCount, prescriptionsCount, productsCount, loading } = useAppSelector(state => state.dashboard)
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(getPatientsCount())
+        console.log({
+            "patients count": patientsCount,
+            "prescriptions count": prescriptionsCount,
+            "products count": productsCount,
+        })
+    }, [])
+
+    if (loading)
+        return (
+            <>
+                <Text
+                    style={{
+                        textAlign: "center",
+                        marginTop: 20,
+                        fontSize: 20,
+                        fontWeight: "bold",
+                    }}>
+                    Loading...
+                </Text>
+            </>
+        )
+
     return (
         <SafeAreaView>
             <NavBar />
