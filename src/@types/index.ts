@@ -22,10 +22,15 @@ type Prescription = {
 type PrescriptionStatus = "Brouillon" | "Enregistrée"
 
 type Patient = {
-    patientId: number | string
-    name: string
-    age: number
-    image: string
+    _id: string
+    firstName: string
+    lastName: string
+    cin: string
+    phoneNumber: string
+    dateOfBirth: string
+    avatar: string
+    prescriptions: string[]
+    createdAt: string
 }
 
 export type { Product, Prescription, Patient }
