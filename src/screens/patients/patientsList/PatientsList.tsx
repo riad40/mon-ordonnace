@@ -5,8 +5,20 @@ import patientsListStyles from "./patientsListStyles"
 import patients from "../../../helpers/data/patients"
 import styles from "../../../assets/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { useEffect } from "react"
+import { useAppSelector, useAppDispatch } from "../../../state/hooks"
+import { RootState } from "../../../state/store"
+import { getPatients } from "../../../services/patientServices"
 
 const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"PatientsList">["navigation"] }) => {
+    const { patients, loading } = useAppSelector((state: RootState) => state.patients)
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(getPatients())
+    }, [])
+
     return (
         <SafeAreaView>
             <NavBar />
@@ -20,12 +32,12 @@ const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"Patien
                 <View style={patientsListStyles.container}>
                     <FlatList
                         data={patients}
-                        keyExtractor={item => item.patientId}
+                        keyExtractor={item => item._id}
                         renderItem={({ item }) => (
                             <PatientCard
-                                key={item.patientId}
+                                key={item._id}
                                 patient={item}
-                                onPress={() => navigation.navigate("PatientDetails", { patientId: item.patientId })}
+                                onPress={() => navigation.navigate("PatientDetails", { patientId: item._id })}
                             />
                         )}
                     />
