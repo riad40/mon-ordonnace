@@ -11,7 +11,7 @@ const productDetailsStyles = StyleSheet.create({
     image: {
         width: wp("26%"),
         height: hp("13%"),
-        borderRadius: hp("13%"),
+        borderRadius: hp("1%"),
         marginBottom: hp("2.5%"),
         resizeMode: "contain",
     },

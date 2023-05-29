@@ -2,15 +2,26 @@ import { View, ScrollView, SafeAreaView, FlatList } from "react-native"
 import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard } from "../../../components"
 import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productsListStyles from "./productsListStyles"
-import products from "../../../helpers/data/products"
 import styles from "../../../assets/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { getProducts } from "../../../services/productServices"
+import { useEffect } from "react"
+import { useAppSelector, useAppDispatch } from "../../../state/hooks"
+import { RootState } from "../../../state/store"
 
 const ProductsList = ({
     navigation,
 }: {
     navigation: ProductsStackNavProps<"ProductsList">["navigation"]
 }): JSX.Element => {
+    const { products, loading } = useAppSelector((state: RootState) => state.products)
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(getProducts())
+    }, [])
+
     return (
         <SafeAreaView>
             <NavBar />
@@ -28,11 +39,11 @@ const ProductsList = ({
 
                 <FlatList
                     data={products}
-                    keyExtractor={item => item.productId}
+                    keyExtractor={item => item._id}
                     renderItem={({ item }) => (
                         <ProductCard
                             product={item}
-                            onPress={() => navigation.navigate("ProductDetails", { productId: item.productId })}
+                            onPress={() => navigation.navigate("ProductDetails", { productId: item._id })}
                         />
                     )}
                 />
