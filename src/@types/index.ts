@@ -12,11 +12,17 @@ type Product = {
 }
 
 type Prescription = {
-    prescriptionId: number | string
-    patientName: string
-    date: string
+    _id: string
+    id: number
+    patient: string
+    products: {
+        name: string
+        dosage: string
+        duration: string
+    }[]
     status: PrescriptionStatus
-    image: string
+    createdAt: string
+    avatar: string
 }
 
 type PrescriptionStatus = "Brouillon" | "Enregistrée"
@@ -33,4 +39,11 @@ type Patient = {
     createdAt: string
 }
 
-export type { Product, Prescription, Patient }
+/** ============================  Option type ============================ */
+
+type Option = {
+    name: string
+    avatar: string | null
+}
+
+export type { Product, Prescription, Patient, Option }
