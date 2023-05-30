@@ -1,7 +1,7 @@
 import { StyleSheet } from "react-native"
 import colors from "../../../constants/colors"
 import { widthPercentageToDP as wp, heightPercentageToDP as hp } from "react-native-responsive-screen"
-import { FONT_SIZE_14 } from "../../../constants/fontSize"
+import { FONT_SIZE_14, FONT_SIZE_16 } from "../../../constants/fontSize"
 
 const addPrescriptionStyles = StyleSheet.create({
     container: {
@@ -37,11 +37,25 @@ const addPrescriptionStyles = StyleSheet.create({
         paddingVertical: hp("1.5%"),
         alignItems: "center",
         marginBottom: hp("1%"),
+        width: "50%",
+        alignSelf: "center",
     },
     buttonText: {
         fontFamily: "SourceSansPro-SemiBold",
         fontSize: FONT_SIZE_14,
         color: "#FFFFFF",
+    },
+    newProductWrapper: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingHorizontal: wp("5%"),
+        marginVertical: hp("3%"),
+    },
+    newProductText: {
+        fontFamily: "SourceSansPro-Bold",
+        fontSize: FONT_SIZE_16,
+        color: "#000000",
     },
 })
 
