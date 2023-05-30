@@ -1,26 +1,13 @@
 import { View, Text, Image } from "react-native"
 import optionStyles from "./optionStyles"
+import { Option as OptionType } from "../../../../@types"
+import API_URL from "../../../../configs/API_URL"
 
-const Option = ({
-    patietName,
-    patientImage,
-    style,
-    noImg,
-}: {
-    patietName: string
-    patientImage?: any
-    style?: object
-    noImg?: boolean
-}) => {
+const Option = ({ data, style }: { data: OptionType; style?: object }) => {
     return (
         <View style={[optionStyles.optionContainer, style]}>
-            {!noImg && (
-                <Image
-                    source={{ uri: "https://www.w3schools.com/w3images/avatar2.png" }}
-                    style={optionStyles.optionsImage}
-                />
-            )}
-            <Text style={optionStyles.optionsText}>{patietName}</Text>
+            {data?.avatar && <Image source={{ uri: API_URL + data.avatar }} style={optionStyles.optionsImage} />}
+            <Text style={optionStyles.optionsText}>{data?.name}</Text>
         </View>
     )
 }

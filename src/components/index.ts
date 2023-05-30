@@ -17,6 +17,7 @@ import Option from "./common/form/option/Option"
 import CustomTextInput from "./common/form/customTextInput/CustomTextInput"
 import SimpleCard from "./common/cards/simpleCard/SimpleCard"
 import DetailsCard from "./common/cards/detailsCard/DetailsCard"
+import ProductInputs from "./prescriptions/productInputs/ProductInputs"
 
 export {
     NavBar,
@@ -38,4 +39,5 @@ export {
     CustomTextInput,
     SimpleCard,
     DetailsCard,
+    ProductInputs,
 }
