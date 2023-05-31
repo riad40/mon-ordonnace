@@ -1,7 +1,7 @@
 import { View, Text } from "react-native"
 import profileIconStyles from "./profileIconStyles"
 
-const ProfileIcon = ({ firstName, lastName }: { firstName: string; lastName: string }) => {
+const ProfileIcon = ({ firstName, lastName, size }: { firstName: string; lastName: string; size?: { width: string; height: string } }) => {
     const initials = `${firstName.charAt(0)}${lastName.charAt(0)}`
 
     return (

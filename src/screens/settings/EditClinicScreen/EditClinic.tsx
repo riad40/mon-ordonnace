@@ -4,19 +4,43 @@ import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/
 import editClinicStyles from "./editClinicStyles"
 import styles from "../../../assets/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { useState } from "react"
+import { useAppDispatch, useAppSelector } from "../../../state/hooks"
+import { updateClinicInfos } from "../../../services/profileServices"
+import cities from "../../../helpers/data/cities"
 
-const EditClinic = ({ navigation }: { navigation: SettingsStackNavProps<"EditClinic">["navigation"] }): JSX.Element => {
-    const cities = [
-        { name: "ouarzazate" },
-        { name: "casablanca" },
-        { name: "rabat" },
-        { name: "marrakech" },
-        { name: "tanger" },
-        { name: "fes" },
-        { name: "meknes" },
-        { name: "agadir" },
-        { name: "oujda" },
-    ]
+const EditClinic = ({ navigation, route }: { navigation: SettingsStackNavProps<"EditClinic">["navigation"]; route: SettingsStackNavProps<"EditClinic">["route"] }): JSX.Element => {
+    const { clinic } = route.params
+
+    const [clinicData, setClinicData] = useState({
+        name: clinic?.name,
+        email: clinic?.email,
+        address: clinic?.address,
+        city: clinic?.city,
+        phone: clinic?.phone,
+        fax: clinic?.fax,
+    })
+
+    const dispatch = useAppDispatch()
+
+    const { loading, error } = useAppSelector(state => state.profile)
+
+    const handleSave = () => {
+        dispatch(updateClinicInfos(clinicData))
+
+        if (error) {
+            console.log(error)
+            return
+        }
+
+        if (loading) {
+            console.log("loading...")
+            return
+        }
+
+        navigation.goBack()
+    }
+
     return (
         <SafeAreaView>
             <NavBar navigation={navigation} />
@@ -24,22 +48,13 @@ const EditClinic = ({ navigation }: { navigation: SettingsStackNavProps<"EditCli
                 <View style={editClinicStyles.container}>
                     <Heading text="Cabinet" />
                     <View style={editClinicStyles.formContainer}>
-                        <CustomContainer
-                            label="Nom du cabinet"
-                            element={<CustomTextInput placeholder="Cabinet Redouani" />}
-                        />
-                        <CustomContainer
-                            label="Email du cabinet"
-                            element={<CustomTextInput placeholder="some@cabinet.com" />}
-                        />
-                        <CustomContainer
-                            label="Adresse du cabinet"
-                            element={<SelectOption data={cities} initialValue="ouarzazate" noImg={true} />}
-                        />
-                        <CustomContainer label="Ville" element={<CustomTextInput placeholder="Paris" />} />
-                        <CustomContainer label="Téléphone" element={<CustomTextInput placeholder="06 12 34 56 78" />} />
-                        <CustomContainer label="Fax" element={<CustomTextInput placeholder="01 23 45 67 89" />} />
-                        <WideButton text="Enregistrer" />
+                        <CustomContainer label="Nom du cabinet" element={<CustomTextInput placeholder="Cabinet Redouani" value={clinicData.name} onChangeText={text => setClinicData({ ...clinicData, name: text })} />} />
+                        <CustomContainer label="Email du cabinet" element={<CustomTextInput placeholder="some@cabinet.com" value={clinicData.email} onChangeText={text => setClinicData({ ...clinicData, email: text })} />} />
+                        <CustomContainer label="Adresse du cabinet" element={<CustomTextInput placeholder="2 parc des princes" value={clinicData.address} onChangeText={text => setClinicData({ ...clinicData, address: text })} />} />
+                        <CustomContainer label="Ville" element={<SelectOption data={cities} initialValue={{ name: "ouarzazate", avatar: null }} onSelect={item => setClinicData({ ...clinicData, city: item.name })} />} />
+                        <CustomContainer label="Téléphone" element={<CustomTextInput placeholder="06 12 34 56 78" value={clinicData.phone} onChangeText={text => setClinicData({ ...clinicData, phone: text })} />} />
+                        <CustomContainer label="Fax" element={<CustomTextInput placeholder="01 23 45 67 89" value={clinicData.fax} onChangeText={text => setClinicData({ ...clinicData, fax: text })} />} />
+                        <WideButton text="Enregistrer" onPress={handleSave} />
                     </View>
                 </View>
                 <View style={{ marginTop: hp("10%") }} />

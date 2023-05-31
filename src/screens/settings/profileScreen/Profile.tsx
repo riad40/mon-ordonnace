@@ -1,20 +1,45 @@
-import { View, Image, ScrollView, SafeAreaView } from "react-native"
-import { NavBar, TextButton, DetailsCard } from "../../../components"
+import { View, Image, ScrollView, SafeAreaView, Text } from "react-native"
+import { NavBar, TextButton, DetailsCard, ProfileIcon } from "../../../components"
 import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import profileStyles from "./profileStyles"
 import styles from "../../../assets/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
+import { useEffect } from "react"
+import { useAppDispatch, useAppSelector } from "../../../state/hooks"
+import { getUserInfos, getClinicInfos } from "../../../services/profileServices"
+import { RootState } from "../../../state/store"
+import API_URL from "../../../configs/API_URL"
 
 const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">["navigation"] }): JSX.Element => {
+    const dispatch = useAppDispatch()
+
+    const { user, clinic, loading } = useAppSelector((state: RootState) => state.profile)
+
+    useEffect(() => {
+        dispatch(getUserInfos())
+        dispatch(getClinicInfos())
+    }, [dispatch])
+
+    if (loading)
+        return (
+            <View>
+                <Text
+                    style={{
+                        textAlign: "center",
+                        marginTop: hp("10%"),
+                        fontSize: 20,
+                    }}>
+                    Loading...
+                </Text>
+            </View>
+        )
+
     return (
         <SafeAreaView>
             <NavBar navigation={navigation} />
             <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
                 <View style={profileStyles.container}>
-                    <Image
-                        source={{ uri: "https://www.w3schools.com/w3images/avatar2.png" }}
-                        style={profileStyles.image}
-                    />
+                    {user.avatar ? <Image source={{ uri: API_URL + user?.avatar }} style={profileStyles.image} /> : <ProfileIcon firstName={user?.fullName.split(" ")[0] || "No"} lastName={user?.fullName.split(" ")[1] || "Name"} />}
                     <TextButton text="Changer photo de profile" />
                 </View>
                 {/* General Infos */}
@@ -24,30 +49,30 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
                     details={[
                         {
                             title: "Nom du Compte",
-                            value: "Khalid Redouani",
+                            value: user?.fullName,
                         },
                         {
                             title: "Spécialité",
-                            value: "Médecin généraliste",
+                            value: user.speciality,
                         },
                         {
                             title: "Email",
-                            value: "k.redouani@gmail.com",
+                            value: user.email,
                         },
                         {
                             title: "Téléphone",
-                            value: "06 12 34 56 78",
+                            value: user.phone,
                         },
                         {
                             title: "Date de naissance",
-                            value: "01 novembre 1990",
+                            value: user.dateOfBirth,
                         },
                         {
                             title: "INPE",
-                            value: "EE 123456",
+                            value: user.inpe,
                         },
                     ]}
-                    onPress={() => navigation.navigate("EditProfile")}
+                    onPress={() => navigation.navigate("EditProfile", { user })}
                 />
                 {/* Cabinet */}
                 <DetailsCard
@@ -56,30 +81,30 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
                     details={[
                         {
                             title: "Nom",
-                            value: "Cabinet Redouani",
+                            value: clinic?.name,
                         },
                         {
                             title: "Email du cabinet",
-                            value: "redouani@cabinet.com",
+                            value: clinic?.email,
                         },
                         {
                             title: "Adresse",
-                            value: "Rue 123, Ville, Pays",
+                            value: clinic?.address,
                         },
                         {
                             title: "Ville",
-                            value: "Ville",
+                            value: clinic?.city,
                         },
                         {
                             title: "Téléphone",
-                            value: "06 12 34 56 78",
+                            value: clinic?.phone,
                         },
                         {
                             title: "Fax",
-                            value: "06 12 34 56 78",
+                            value: clinic?.fax,
                         },
                     ]}
-                    onPress={() => navigation.navigate("EditClinic")}
+                    onPress={() => navigation.navigate("EditClinic", { clinic })}
                 />
                 <View style={{ marginTop: hp("10%") }} />
             </ScrollView>

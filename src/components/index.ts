@@ -18,26 +18,6 @@ import CustomTextInput from "./common/form/customTextInput/CustomTextInput"
 import SimpleCard from "./common/cards/simpleCard/SimpleCard"
 import DetailsCard from "./common/cards/detailsCard/DetailsCard"
 import ProductInputs from "./prescriptions/productInputs/ProductInputs"
+import ProfileIcon from "./common/nav/profileIcon/ProfileIcon"
 
-export {
-    NavBar,
-    Heading,
-    StateCard,
-    TabIcon,
-    SubHeading,
-    TextButton,
-    SearchInput,
-    ProductCard,
-    Header,
-    PatientCard,
-    PrescriptionCard,
-    PrescriptionHeader,
-    WideButton,
-    CustomContainer,
-    SelectOption,
-    Option,
-    CustomTextInput,
-    SimpleCard,
-    DetailsCard,
-    ProductInputs,
-}
+export { NavBar, Heading, StateCard, TabIcon, SubHeading, TextButton, SearchInput, ProductCard, Header, PatientCard, PrescriptionCard, PrescriptionHeader, WideButton, CustomContainer, SelectOption, Option, CustomTextInput, SimpleCard, DetailsCard, ProductInputs, ProfileIcon }
