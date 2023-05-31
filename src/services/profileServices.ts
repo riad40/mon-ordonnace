@@ -25,6 +25,21 @@ const updateUserInfos = createAsyncThunk("users/id", async (data: any) => {
     }
 })
 
+// update user avatar
+const updateUserAvatar = createAsyncThunk("users/id", async (data: any) => {
+    try {
+        const response = await api.patch("/users/" + USER_ID + "/avatar", data, {
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+        })
+
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+})
+
 // get clinic infos
 const getClinicInfos = createAsyncThunk("clinics/id", async () => {
     try {
@@ -45,4 +60,4 @@ const updateClinicInfos = createAsyncThunk("clinics/id", async (data: any) => {
     }
 })
 
-export { getUserInfos, updateUserInfos, getClinicInfos, updateClinicInfos }
+export { getUserInfos, updateUserInfos, getClinicInfos, updateClinicInfos, updateUserAvatar }

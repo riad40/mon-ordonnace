@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import { getUserInfos, getClinicInfos, updateUserInfos, updateClinicInfos } from "../../../services/profileServices"
+import {
+    getUserInfos,
+    getClinicInfos,
+    updateUserInfos,
+    updateClinicInfos,
+    updateUserAvatar,
+} from "../../../services/profileServices"
 import { User, Clinic } from "../../../@types"
 
 interface ProfileState {
@@ -76,6 +82,19 @@ const profileSlice = createSlice({
             state.error = action.payload
             state.loading = false
         },
+        // updateUserAvatar
+        [updateUserAvatar.pending.type]: state => {
+            state.loading = true
+        },
+        [updateUserAvatar.fulfilled.type]: (state, action) => {
+            state.user = action.payload
+            state.loading = false
+        },
+        [updateUserAvatar.rejected.type]: (state, action: PayloadAction<string | null>) => {
+            state.error = action.payload
+            state.loading = false
+        },
+
         // updateClinicInfos
         [updateClinicInfos.pending.type]: state => {
             state.loading = true
