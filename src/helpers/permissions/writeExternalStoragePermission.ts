@@ -1,6 +1,6 @@
 import { PermissionsAndroid } from "react-native"
 
-const requestExternalStoragePermission = async () => {
+const requestWriteExternalStoragePermission = async () => {
     let isGranted: boolean = false
 
     try {
@@ -25,4 +25,4 @@ const requestExternalStoragePermission = async () => {
     return isGranted
 }
 
-export default requestExternalStoragePermission
+export default requestWriteExternalStoragePermission

@@ -7,7 +7,7 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 import { useAppDispatch, useAppSelector } from "../../../state/hooks"
 import { useEffect } from "react"
 import { getPrescriptionById } from "../../../services/prescriptionServices"
-import requestExternalStoragePermission from "../../../helpers/externalStoragePermission"
+import requestWriteExternalStoragePermission from "../../../helpers/permissions/writeExternalStoragePermission"
 import RNHTMLtoPDF from "react-native-html-to-pdf"
 import htmlContent from "../../../helpers/htmlContent"
 import { Prescription } from "../../../@types"
@@ -33,7 +33,7 @@ const PrescriptionDetails = ({ navigation, route }: { navigation: PrescreptionsS
     const year = date?.split("-")[0]
 
     const printPrescription = async () => {
-        const granted = await requestExternalStoragePermission()
+        const granted = await requestWriteExternalStoragePermission()
 
         if (granted) {
             const options = {
