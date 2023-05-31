@@ -46,4 +46,29 @@ type Option = {
     avatar: string | null
 }
 
-export type { Product, Prescription, Patient, Option }
+/** ============================  User && Clinic types ============================ */
+
+type User = {
+    _id: string
+    fullName: string
+    email: string
+    password: string
+    avatar: string
+    speciality: string
+    dateOfBirth: string
+    inpe: string
+    phone: string
+}
+
+type Clinic = {
+    _id: string
+    name: string
+    address: string
+    city: string
+    phone: string
+    email: string
+    fax: string
+    owner: string
+}
+
+export type { Product, Prescription, Patient, Option, User, Clinic }
