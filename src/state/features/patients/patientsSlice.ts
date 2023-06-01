@@ -22,31 +22,31 @@ const patientSlice = createSlice({
     name: "patient",
     initialState,
     reducers: {},
-    extraReducers: {
+    extraReducers: builder => {
         // get patients
-        [getPatients.pending.type]: state => {
+        builder.addCase(getPatients.pending, state => {
             state.loading = true
-        },
-        [getPatients.fulfilled.type]: (state, { payload }: PayloadAction<Patient[]>) => {
+        })
+        builder.addCase(getPatients.fulfilled, (state, { payload }: PayloadAction<Patient[]>) => {
             state.loading = false
             state.patients = payload
-        },
-        [getPatients.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+        })
+        builder.addCase(getPatients.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
             state.error = payload
-        },
+        })
         // get patient by id
-        [getPatientById.pending.type]: state => {
+        builder.addCase(getPatientById.pending, state => {
             state.loading = true
-        },
-        [getPatientById.fulfilled.type]: (state, { payload }: PayloadAction<Patient>) => {
+        })
+        builder.addCase(getPatientById.fulfilled, (state, { payload }: PayloadAction<Patient>) => {
             state.loading = false
             state.patient = payload
-        },
-        [getPatientById.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+        })
+        builder.addCase(getPatientById.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
             state.error = payload
-        },
+        })
     },
 })
 

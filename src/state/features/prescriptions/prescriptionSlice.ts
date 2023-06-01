@@ -22,43 +22,43 @@ const prescriptionSlice = createSlice({
     name: "prescription",
     initialState,
     reducers: {},
-    extraReducers: {
+    extraReducers: builder => {
         // get prescriptions
-        [getPrescriptions.pending.type]: state => {
+        builder.addCase(getPrescriptions.pending, state => {
             state.loading = true
-        },
-        [getPrescriptions.fulfilled.type]: (state, { payload }: PayloadAction<Prescription[]>) => {
+        })
+        builder.addCase(getPrescriptions.fulfilled, (state, { payload }: PayloadAction<Prescription[]>) => {
             state.loading = false
             state.prescriptions = payload
-        },
-        [getPrescriptions.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+        })
+        builder.addCase(getPrescriptions.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
             state.error = payload
-        },
+        })
         // get prescription by id
-        [getPrescriptionById.pending.type]: state => {
+        builder.addCase(getPrescriptionById.pending, state => {
             state.loading = true
-        },
-        [getPrescriptionById.fulfilled.type]: (state, { payload }: PayloadAction<Prescription>) => {
+        })
+        builder.addCase(getPrescriptionById.fulfilled, (state, { payload }: PayloadAction<Prescription>) => {
             state.loading = false
             state.prescription = payload
-        },
-        [getPrescriptionById.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+        })
+        builder.addCase(getPrescriptionById.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
             state.error = payload
-        },
+        })
         // create prescription
-        [createPrescription.pending.type]: state => {
+        builder.addCase(createPrescription.pending, state => {
             state.loading = true
-        },
-        [createPrescription.fulfilled.type]: (state, { payload }: PayloadAction<Prescription>) => {
+        })
+        builder.addCase(createPrescription.fulfilled, (state, { payload }: PayloadAction<Prescription>) => {
             state.loading = false
             state.prescriptions.push(payload)
-        },
-        [createPrescription.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+        })
+        builder.addCase(createPrescription.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
             state.error = payload
-        },
+        })
     },
 })
 

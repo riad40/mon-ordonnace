@@ -6,7 +6,7 @@ const USER_ID = "6473487fa17e6c0ae79b0a5a"
 const CLINIC_ID = "6473487fa17e6c0ae79b0a5c"
 
 // get user infos
-const getUserInfos = createAsyncThunk("users/id", async () => {
+const getUserInfos = createAsyncThunk("/get/users/:id", async () => {
     try {
         const response = await api.get("/users/" + USER_ID)
         return response.data
@@ -16,7 +16,7 @@ const getUserInfos = createAsyncThunk("users/id", async () => {
 })
 
 // update user infos
-const updateUserInfos = createAsyncThunk("users/id", async (data: any) => {
+const updateUserInfos = createAsyncThunk("/put/users/:id", async (data: any) => {
     try {
         const response = await api.put("/users/" + USER_ID, data)
         return response.data
@@ -26,7 +26,7 @@ const updateUserInfos = createAsyncThunk("users/id", async (data: any) => {
 })
 
 // update user avatar
-const updateUserAvatar = createAsyncThunk("users/id", async (data: any) => {
+const updateUserAvatar = createAsyncThunk("/patch/users/:id/avatar", async (data: any) => {
     try {
         const response = await api.patch("/users/" + USER_ID + "/avatar", data, {
             headers: {
@@ -41,7 +41,7 @@ const updateUserAvatar = createAsyncThunk("users/id", async (data: any) => {
 })
 
 // get clinic infos
-const getClinicInfos = createAsyncThunk("clinics/id", async () => {
+const getClinicInfos = createAsyncThunk("/get/clinics/id", async () => {
     try {
         const response = await api.get("/clinics/" + CLINIC_ID)
         return response.data
@@ -51,7 +51,7 @@ const getClinicInfos = createAsyncThunk("clinics/id", async () => {
 })
 
 // update clinic infos
-const updateClinicInfos = createAsyncThunk("clinics/id", async (data: any) => {
+const updateClinicInfos = createAsyncThunk("/put/clinics/id", async (data: any) => {
     try {
         const response = await api.put("/clinics/" + CLINIC_ID, data)
         return response.data

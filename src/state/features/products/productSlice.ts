@@ -22,31 +22,31 @@ const productSlice = createSlice({
     name: "product",
     initialState,
     reducers: {},
-    extraReducers: {
+    extraReducers: builder => {
         // get products
-        [getProducts.pending.type]: state => {
+        builder.addCase(getProducts.pending, state => {
             state.loading = true
-        },
-        [getProducts.fulfilled.type]: (state, { payload }: PayloadAction<Product[]>) => {
+        })
+        builder.addCase(getProducts.fulfilled, (state, { payload }: PayloadAction<Product[]>) => {
             state.loading = false
             state.products = payload
-        },
-        [getProducts.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+        })
+        builder.addCase(getProducts.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
             state.error = payload
-        },
+        })
         // get product by id
-        [getProductById.pending.type]: state => {
+        builder.addCase(getProductById.pending, state => {
             state.loading = true
-        },
-        [getProductById.fulfilled.type]: (state, { payload }: PayloadAction<Product>) => {
+        })
+        builder.addCase(getProductById.fulfilled, (state, { payload }: PayloadAction<Product>) => {
             state.loading = false
             state.product = payload
-        },
-        [getProductById.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+        })
+        builder.addCase(getProductById.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
             state.error = payload
-        },
+        })
     },
 })
 

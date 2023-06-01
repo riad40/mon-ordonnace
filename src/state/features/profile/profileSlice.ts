@@ -1,11 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit"
-import {
-    getUserInfos,
-    getClinicInfos,
-    updateUserInfos,
-    updateClinicInfos,
-    updateUserAvatar,
-} from "../../../services/profileServices"
+import { getUserInfos, getClinicInfos, updateUserInfos, updateClinicInfos, updateUserAvatar } from "../../../services/profileServices"
 import { User, Clinic } from "../../../@types"
 
 interface ProfileState {
@@ -45,68 +39,67 @@ const profileSlice = createSlice({
     name: "profile",
     initialState,
     reducers: {},
-    extraReducers: {
-        // getUserInfos
-        [getUserInfos.pending.type]: state => {
+    extraReducers: builder => {
+        // get user infos
+        builder.addCase(getUserInfos.pending, state => {
             state.loading = true
-        },
-        [getUserInfos.fulfilled.type]: (state, action) => {
-            state.user = action.payload
+        })
+        builder.addCase(getUserInfos.fulfilled, (state, { payload }: PayloadAction<User>) => {
             state.loading = false
-        },
-        [getUserInfos.rejected.type]: (state, action: PayloadAction<string | null>) => {
-            state.error = action.payload
+            state.user = payload
+        })
+        builder.addCase(getUserInfos.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
-        },
-        // getClinicInfos
-        [getClinicInfos.pending.type]: state => {
+            state.error = payload
+        })
+        // get clinic infos
+        builder.addCase(getClinicInfos.pending, state => {
             state.loading = true
-        },
-        [getClinicInfos.fulfilled.type]: (state, action) => {
-            state.clinic = action.payload
+        })
+        builder.addCase(getClinicInfos.fulfilled, (state, { payload }: PayloadAction<Clinic>) => {
             state.loading = false
-        },
-        [getClinicInfos.rejected.type]: (state, action: PayloadAction<string | null>) => {
-            state.error = action.payload
+            state.clinic = payload
+        })
+        builder.addCase(getClinicInfos.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
-        },
-        // updateUserInfos
-        [updateUserInfos.pending.type]: state => {
+            state.error = payload
+        })
+        // update user infos
+        builder.addCase(updateUserInfos.pending, state => {
             state.loading = true
-        },
-        [updateUserInfos.fulfilled.type]: (state, action) => {
-            state.user = action.payload
+        })
+        builder.addCase(updateUserInfos.fulfilled, (state, { payload }: PayloadAction<User>) => {
             state.loading = false
-        },
-        [updateUserInfos.rejected.type]: (state, action: PayloadAction<string | null>) => {
-            state.error = action.payload
+            state.user = payload
+        })
+        builder.addCase(updateUserInfos.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
-        },
-        // updateUserAvatar
-        [updateUserAvatar.pending.type]: state => {
+            state.error = payload
+        })
+        // update clinic infos
+        builder.addCase(updateClinicInfos.pending, state => {
             state.loading = true
-        },
-        [updateUserAvatar.fulfilled.type]: (state, action) => {
-            state.user = action.payload
+        })
+        builder.addCase(updateClinicInfos.fulfilled, (state, { payload }: PayloadAction<Clinic>) => {
             state.loading = false
-        },
-        [updateUserAvatar.rejected.type]: (state, action: PayloadAction<string | null>) => {
-            state.error = action.payload
+            state.clinic = payload
+        })
+        builder.addCase(updateClinicInfos.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
-        },
-
-        // updateClinicInfos
-        [updateClinicInfos.pending.type]: state => {
+            state.error = payload
+        })
+        // update user avatar
+        builder.addCase(updateUserAvatar.pending, state => {
             state.loading = true
-        },
-        [updateClinicInfos.fulfilled.type]: (state, action) => {
-            state.clinic = action.payload
+        })
+        builder.addCase(updateUserAvatar.fulfilled, (state, { payload }: PayloadAction<User>) => {
             state.loading = false
-        },
-        [updateClinicInfos.rejected.type]: (state, action: PayloadAction<string | null>) => {
-            state.error = action.payload
+            state.user = payload
+        })
+        builder.addCase(updateUserAvatar.rejected, (state, { payload }: PayloadAction<any>) => {
             state.loading = false
-        },
+            state.error = payload
+        })
     },
 })
 
