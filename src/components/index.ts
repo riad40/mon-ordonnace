@@ -19,5 +19,29 @@ import SimpleCard from "./common/cards/simpleCard/SimpleCard"
 import DetailsCard from "./common/cards/detailsCard/DetailsCard"
 import ProductInputs from "./prescriptions/productInputs/ProductInputs"
 import ProfileIcon from "./common/nav/profileIcon/ProfileIcon"
+import Loading from "./common/loading/loading"
 
-export { NavBar, Heading, StateCard, TabIcon, SubHeading, TextButton, SearchInput, ProductCard, Header, PatientCard, PrescriptionCard, PrescriptionHeader, WideButton, CustomContainer, SelectOption, Option, CustomTextInput, SimpleCard, DetailsCard, ProductInputs, ProfileIcon }
+export {
+    NavBar,
+    Heading,
+    StateCard,
+    TabIcon,
+    SubHeading,
+    TextButton,
+    SearchInput,
+    ProductCard,
+    Header,
+    PatientCard,
+    PrescriptionCard,
+    PrescriptionHeader,
+    WideButton,
+    CustomContainer,
+    SelectOption,
+    Option,
+    CustomTextInput,
+    SimpleCard,
+    DetailsCard,
+    ProductInputs,
+    ProfileIcon,
+    Loading,
+}
