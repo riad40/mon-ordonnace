@@ -1,11 +1,10 @@
-import { ScrollView, View, SafeAreaView, FlatList } from "react-native"
-import { NavBar, PatientCard, Header, TextButton } from "../../../components"
+import { ScrollView, View, SafeAreaView } from "react-native"
+import { NavBar, PatientCard, Header, TextButton, Loading } from "../../../components"
 import { PatientStackNavProps } from "../../../navigation/stacks/patientStack/@types"
 import patientsListStyles from "./patientsListStyles"
-import patients from "../../../helpers/data/patients"
 import styles from "../../../assets/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
-import { useEffect } from "react"
+import { useEffect, useState, useMemo } from "react"
 import { useAppSelector, useAppDispatch } from "../../../state/hooks"
 import { RootState } from "../../../state/store"
 import { getPatients } from "../../../services/patientServices"
@@ -19,28 +18,26 @@ const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"Patien
         dispatch(getPatients())
     }, [])
 
+    const [search, setSearch] = useState("")
+    const onSearch = (text: string) => {
+        setSearch(text)
+    }
+
+    const filteredPatients = useMemo(() => {
+        return patients.filter(patient => patient.firstName?.toLowerCase().includes(search.toLowerCase()) || patient.lastName?.toLowerCase().includes(search.toLowerCase()))
+    }, [patients, search])
+
+    if (loading) return <Loading />
+
     return (
         <SafeAreaView>
             <NavBar />
             <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
-                <Header
-                    heading="Patients"
-                    subHeading="45 300 Patients"
-                    textButton="+ Ajouter un patient"
-                    placeholder="Rechercher un patient"
-                />
+                <Header heading="Patients" subHeading="45 300 Patients" textButton="+ Ajouter un patient" placeholder="Rechercher un patient" onChangeText={onSearch} />
                 <View style={patientsListStyles.container}>
-                    <FlatList
-                        data={patients}
-                        keyExtractor={item => item._id}
-                        renderItem={({ item }) => (
-                            <PatientCard
-                                key={item._id}
-                                patient={item}
-                                onPress={() => navigation.navigate("PatientDetails", { patientId: item._id })}
-                            />
-                        )}
-                    />
+                    {filteredPatients?.map(patient => (
+                        <PatientCard key={patient._id} patient={patient} onPress={() => navigation.navigate("PatientDetails", { patientId: patient._id })} />
+                    ))}
                 </View>
                 <View>
                     <TextButton text="+ Ajouter un patient" style={patientsListStyles.btnCenter} />

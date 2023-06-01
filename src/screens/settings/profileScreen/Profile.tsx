@@ -15,14 +15,13 @@ import requestAccessCameraPermission from "../../../helpers/permissions/cameraPe
 import requestReadAccessImagesPermission from "../../../helpers/permissions/readExternalStoragePermission"
 import { launchCamera, launchImageLibrary } from "react-native-image-picker"
 import { updateUserAvatar } from "../../../services/profileServices"
-import AwesomeAlert from "react-native-awesome-alerts"
 
 const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">["navigation"] }): JSX.Element => {
     const dispatch = useAppDispatch()
 
     const [show, setShow] = useState(false)
 
-    const { user, clinic, loading } = useAppSelector((state: RootState) => state.profile)
+    const { user, clinic } = useAppSelector((state: RootState) => state.profile)
 
     useEffect(() => {
         dispatch(getUserInfos())
@@ -42,8 +41,6 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
 
         setShow(false)
     }
-
-    console.log(API_URL + user.avatar)
 
     const handleUploadImage = async () => {
         const imagesPermission = await requestReadAccessImagesPermission()
@@ -76,63 +73,39 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
     const handleTakePicture = async () => {
         const cameraPermission = await requestAccessCameraPermission()
 
-        if (!cameraPermission)
-            return (
-                <AwesomeAlert
-                    show={true}
-                    showProgress={false}
-                    title="Permission refusée"
-                    message="Vous devez autoriser l'accès à la caméra pour pouvoir prendre une photo"
-                    closeOnTouchOutside={true}
-                    closeOnHardwareBackPress={false}
-                    showConfirmButton={true}
-                    confirmText="OK"
-                    confirmButtonColor="#18B1D4"
-                    onConfirmPressed={() => {
-                        setShow(false)
-                    }}
-                />
-            )
-
-        const options: any = {
-            mediaType: "photo",
-            quality: 0.5,
-            maxWidth: 500,
-            maxHeight: 500,
-            includeBase64: true,
-        }
-
-        launchCamera(options, (response: any) => {
-            if (response.didCancel) {
-                setShow(false)
-                return
+        if (cameraPermission) {
+            const options: any = {
+                mediaType: "photo",
+                quality: 0.5,
+                maxWidth: 500,
+                maxHeight: 500,
+                includeBase64: true,
             }
-            const uri = response.assets[0].uri
-            const type = response.assets[0].type
-            updateAvatar(uri, type)
-        })
-    }
 
-    if (loading)
-        return (
-            <View>
-                <Text
-                    style={{
-                        textAlign: "center",
-                        marginTop: hp("10%"),
-                        fontSize: 20,
-                    }}>
-                    Loading...
-                </Text>
-            </View>
-        )
+            launchCamera(options, (response: any) => {
+                if (response.didCancel) {
+                    setShow(false)
+                    return
+                }
+                const uri = response.assets[0].uri
+                const type = response.assets[0].type
+                updateAvatar(uri, type)
+            })
+        } else {
+            setShow(false)
+        }
+    }
 
     return (
         <SafeAreaView>
             <NavBar navigation={navigation} />
             <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
                 <View style={profileStyles.container}>
-                    {user?.avatar ? <Image source={{ uri: API_URL + user?.avatar }} style={profileStyles.image} /> : <ProfileIcon firstName={user?.fullName.split(" ")[0] || "No"} lastName={user?.fullName.split(" ")[1] || "Name"} />}
+                    {user?.avatar ? (
+                        <Image source={{ uri: API_URL + user?.avatar }} style={profileStyles.image} />
+                    ) : (
+                        <ProfileIcon firstName={user?.fullName.split(" ")[0] || "No"} lastName={user?.fullName.split(" ")[1] || "Name"} />
+                    )}
                     <TextButton
                         text="Changer photo de profile"
                         onPress={() => {

@@ -1,4 +1,4 @@
-import { View, SafeAreaView, ScrollView, Text } from "react-native"
+import { View, SafeAreaView, ScrollView, Alert } from "react-native"
 import { NavBar, Heading, CustomContainer, CustomTextInput, WideButton } from "../../../components"
 import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import editProfileStyles from "./editProfileStyles"
@@ -22,9 +22,13 @@ const EditProfile = ({ navigation, route }: { navigation: SettingsStackNavProps<
 
     const dispatch = useAppDispatch()
 
-    const { loading, error } = useAppSelector(state => state.profile)
+    const { error } = useAppSelector(state => state.profile)
 
     const handleSave = () => {
+        if (userData.fullName === "" || userData.speciality === "" || userData.phone === "" || userData.email === "" || userData.dateOfBirth === "" || userData.inpe === "") {
+            return Alert.alert("Erreur", "Veuillez remplir tous les champs")
+        }
+
         dispatch(updateUserInfos(userData))
 
         if (error) {
@@ -35,13 +39,6 @@ const EditProfile = ({ navigation, route }: { navigation: SettingsStackNavProps<
         navigation.goBack()
     }
 
-    if (loading)
-        return (
-            <View>
-                <Text>Loading...</Text>
-            </View>
-        )
-
     return (
         <SafeAreaView>
             <NavBar navigation={navigation} />
@@ -49,12 +46,27 @@ const EditProfile = ({ navigation, route }: { navigation: SettingsStackNavProps<
                 <View style={editProfileStyles.container}>
                     <Heading text="Informations générales" />
                     <View style={editProfileStyles.formContainer}>
-                        <CustomContainer label="Nom du compte" element={<CustomTextInput placeholder="Khalid Redouani" value={userData.fullName} onChangeText={text => setUserData({ ...userData, fullName: text })} />} />
-                        <CustomContainer label="Spécialité" element={<CustomTextInput placeholder="Médecin généraliste" value={userData.speciality} onChangeText={text => setUserData({ ...userData, speciality: text })} />} />
+                        <CustomContainer
+                            label="Nom du compte"
+                            element={<CustomTextInput placeholder="Khalid Redouani" value={userData.fullName} onChangeText={text => setUserData({ ...userData, fullName: text })} />}
+                        />
+                        <CustomContainer
+                            label="Spécialité"
+                            element={<CustomTextInput placeholder="Médecin généraliste" value={userData.speciality} onChangeText={text => setUserData({ ...userData, speciality: text })} />}
+                        />
 
-                        <CustomContainer label="Téléphone" element={<CustomTextInput placeholder="06 12 34 56 78" value={userData.phone} onChangeText={text => setUserData({ ...userData, phone: text })} />} />
-                        <CustomContainer label="Email" element={<CustomTextInput placeholder="some@email.com" value={userData.email} onChangeText={text => setUserData({ ...userData, email: text })} />} />
-                        <CustomContainer label="Date de naissance" element={<CustomTextInput placeholder="01/01/1990" value={userData.dateOfBirth} onChangeText={text => setUserData({ ...userData, dateOfBirth: text })} />} />
+                        <CustomContainer
+                            label="Téléphone"
+                            element={<CustomTextInput placeholder="06 12 34 56 78" value={userData.phone} onChangeText={text => setUserData({ ...userData, phone: text })} />}
+                        />
+                        <CustomContainer
+                            label="Email"
+                            element={<CustomTextInput placeholder="some@email.com" value={userData.email} onChangeText={text => setUserData({ ...userData, email: text })} />}
+                        />
+                        <CustomContainer
+                            label="Date de naissance"
+                            element={<CustomTextInput placeholder="01/01/1990" value={userData.dateOfBirth} onChangeText={text => setUserData({ ...userData, dateOfBirth: text })} />}
+                        />
                         <CustomContainer label="INPE" element={<CustomTextInput placeholder="123456789" value={userData.inpe} onChangeText={text => setUserData({ ...userData, inpe: text })} />} />
                     </View>
                     <WideButton text="Enregistrer" onPress={handleSave} />

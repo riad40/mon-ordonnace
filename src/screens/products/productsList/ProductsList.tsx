@@ -1,26 +1,34 @@
-import { View, ScrollView, SafeAreaView, FlatList } from "react-native"
-import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard } from "../../../components"
+import { View, ScrollView, SafeAreaView } from "react-native"
+import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard, Loading } from "../../../components"
 import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productsListStyles from "./productsListStyles"
 import styles from "../../../assets/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
-import { getProducts } from "../../../services/productServices"
-import { useEffect } from "react"
+import { useState, useEffect, useMemo } from "react"
 import { useAppSelector, useAppDispatch } from "../../../state/hooks"
 import { RootState } from "../../../state/store"
+import { getProducts } from "../../../services"
 
-const ProductsList = ({
-    navigation,
-}: {
-    navigation: ProductsStackNavProps<"ProductsList">["navigation"]
-}): JSX.Element => {
-    const { products, loading } = useAppSelector((state: RootState) => state.products)
-
+const ProductsList = ({ navigation }: { navigation: ProductsStackNavProps<"ProductsList">["navigation"] }): JSX.Element => {
     const dispatch = useAppDispatch()
 
     useEffect(() => {
         dispatch(getProducts())
-    }, [])
+    }, [dispatch])
+
+    const { products, loading } = useAppSelector((state: RootState) => state.products)
+
+    const [search, setSearch] = useState<string>("")
+
+    const onSearch = (text: string) => {
+        setSearch(text)
+    }
+
+    const filteredProducts = useMemo(() => {
+        return products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
+    }, [products, search])
+
+    if (loading) return <Loading />
 
     return (
         <SafeAreaView>
@@ -34,19 +42,12 @@ const ProductsList = ({
                         </View>
                         <TextButton text="+ Suggérer un produit" />
                     </View>
-                    <SearchInput placeholder="Rechercher un produit" />
+                    <SearchInput placeholder="Rechercher un produit" onChangeText={onSearch} />
                 </View>
 
-                <FlatList
-                    data={products}
-                    keyExtractor={item => item._id}
-                    renderItem={({ item }) => (
-                        <ProductCard
-                            product={item}
-                            onPress={() => navigation.navigate("ProductDetails", { productId: item._id })}
-                        />
-                    )}
-                />
+                {filteredProducts?.map(product => (
+                    <ProductCard product={product} onPress={() => navigation.navigate("ProductDetails", { productId: product._id })} key={product._id} />
+                ))}
 
                 <View>
                     <TextButton text="+ Suggérer un produit" style={productsListStyles.btnCenter} />

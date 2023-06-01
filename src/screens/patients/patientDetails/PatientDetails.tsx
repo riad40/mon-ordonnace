@@ -1,5 +1,5 @@
 import { View, Text, Image, ScrollView, SafeAreaView } from "react-native"
-import { NavBar, SimpleCard, DetailsCard } from "../../../components"
+import { NavBar, SimpleCard, DetailsCard, Loading } from "../../../components"
 import { PatientStackNavProps } from "../../../navigation/stacks/patientStack/@types"
 import patientDetailsStyles from "./patientDetailsStyles"
 import styles from "../../../assets/styles"
@@ -9,15 +9,8 @@ import { useAppSelector, useAppDispatch } from "../../../state/hooks"
 import { RootState } from "../../../state/store"
 import { getPatientById } from "../../../services/patientServices"
 import calculateAge from "../../../helpers/calculateAge"
-import API_URL from "../../../configs/API_URL"
 
-const PatientDetails = ({
-    navigation,
-    route,
-}: {
-    navigation: PatientStackNavProps<"PatientDetails">["navigation"]
-    route: PatientStackNavProps<"PatientDetails">["route"]
-}): JSX.Element => {
+const PatientDetails = ({ navigation, route }: { navigation: PatientStackNavProps<"PatientDetails">["navigation"]; route: PatientStackNavProps<"PatientDetails">["route"] }): JSX.Element => {
     const { patientId } = route.params
 
     const { patient, loading } = useAppSelector((state: RootState) => state.patients)
@@ -28,14 +21,14 @@ const PatientDetails = ({
         dispatch(getPatientById(patientId))
     }, [])
 
-    console.log()
+    if (loading) return <Loading />
 
     return (
         <SafeAreaView>
             <NavBar navigation={navigation} />
             <ScrollView style={styles.appContainer}>
                 <View style={patientDetailsStyles.container}>
-                    <Image source={{ uri: API_URL + patient?.avatar }} style={patientDetailsStyles.image} />
+                    <Image source={{ uri: patient?.avatar }} style={patientDetailsStyles.image} />
                     <Text style={patientDetailsStyles.name}>
                         {patient?.firstName} {patient?.lastName}
                     </Text>
@@ -60,11 +53,7 @@ const PatientDetails = ({
                         },
                         {
                             title: "Date de naissance",
-                            value: ("( " +
-                                calculateAge(patient?.dateOfBirth as string) +
-                                " ans )" +
-                                " " +
-                                patient?.dateOfBirth) as string,
+                            value: ("( " + calculateAge(patient?.dateOfBirth as string) + " ans )" + " " + patient?.dateOfBirth) as string,
                         },
                         {
                             title: "Téléphone",

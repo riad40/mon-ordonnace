@@ -1,7 +1,6 @@
 import { View, Text, Image, Pressable } from "react-native"
 import patientCardStyles from "./patientCardStyles"
 import { Patient } from "../../../@types"
-import API_URL from "../../../configs/API_URL"
 import calculateAge from "../../../helpers/calculateAge"
 
 const PatientCard = ({ patient, onPress }: { patient: Patient; onPress?: () => void }) => {
@@ -10,7 +9,7 @@ const PatientCard = ({ patient, onPress }: { patient: Patient; onPress?: () => v
             <View style={patientCardStyles.container}>
                 <View style={patientCardStyles.wrapper}>
                     <View style={patientCardStyles.imageWrapper}>
-                        <Image source={{ uri: API_URL + patient.avatar }} style={patientCardStyles.image} />
+                        <Image source={{ uri: patient.avatar }} style={patientCardStyles.image} />
                     </View>
                     <View style={patientCardStyles.textWrapper}>
                         <Text style={patientCardStyles.name}>

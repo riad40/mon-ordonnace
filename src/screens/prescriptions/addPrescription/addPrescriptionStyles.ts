@@ -57,6 +57,10 @@ const addPrescriptionStyles = StyleSheet.create({
         fontSize: FONT_SIZE_16,
         color: "#000000",
     },
+    buttonWrapper: {
+        paddingHorizontal: wp("5%"),
+        marginVertical: hp("1%"),
+    },
 })
 
 export default addPrescriptionStyles

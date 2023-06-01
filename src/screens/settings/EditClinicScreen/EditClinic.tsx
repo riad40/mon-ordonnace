@@ -1,4 +1,4 @@
-import { View, SafeAreaView, ScrollView } from "react-native"
+import { View, SafeAreaView, ScrollView, Alert } from "react-native"
 import { NavBar, Heading, CustomContainer, CustomTextInput, WideButton, SelectOption } from "../../../components"
 import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import editClinicStyles from "./editClinicStyles"
@@ -26,6 +26,10 @@ const EditClinic = ({ navigation, route }: { navigation: SettingsStackNavProps<"
     const { loading, error } = useAppSelector(state => state.profile)
 
     const handleSave = () => {
+        if (clinicData.name === "" || clinicData.email === "" || clinicData.address === "" || clinicData.city === "" || clinicData.phone === "" || clinicData.fax === "") {
+            return Alert.alert("Erreur", "Veuillez remplir tous les champs")
+        }
+
         dispatch(updateClinicInfos(clinicData))
 
         if (error) {
@@ -48,12 +52,30 @@ const EditClinic = ({ navigation, route }: { navigation: SettingsStackNavProps<"
                 <View style={editClinicStyles.container}>
                     <Heading text="Cabinet" />
                     <View style={editClinicStyles.formContainer}>
-                        <CustomContainer label="Nom du cabinet" element={<CustomTextInput placeholder="Cabinet Redouani" value={clinicData.name} onChangeText={text => setClinicData({ ...clinicData, name: text })} />} />
-                        <CustomContainer label="Email du cabinet" element={<CustomTextInput placeholder="some@cabinet.com" value={clinicData.email} onChangeText={text => setClinicData({ ...clinicData, email: text })} />} />
-                        <CustomContainer label="Adresse du cabinet" element={<CustomTextInput placeholder="2 parc des princes" value={clinicData.address} onChangeText={text => setClinicData({ ...clinicData, address: text })} />} />
-                        <CustomContainer label="Ville" element={<SelectOption data={cities} initialValue={{ name: "ouarzazate", avatar: null }} onSelect={item => setClinicData({ ...clinicData, city: item.name })} />} />
-                        <CustomContainer label="Téléphone" element={<CustomTextInput placeholder="06 12 34 56 78" value={clinicData.phone} onChangeText={text => setClinicData({ ...clinicData, phone: text })} />} />
-                        <CustomContainer label="Fax" element={<CustomTextInput placeholder="01 23 45 67 89" value={clinicData.fax} onChangeText={text => setClinicData({ ...clinicData, fax: text })} />} />
+                        <CustomContainer
+                            label="Nom du cabinet"
+                            element={<CustomTextInput placeholder="Cabinet Redouani" value={clinicData.name} onChangeText={text => setClinicData({ ...clinicData, name: text })} />}
+                        />
+                        <CustomContainer
+                            label="Email du cabinet"
+                            element={<CustomTextInput placeholder="some@cabinet.com" value={clinicData.email} onChangeText={text => setClinicData({ ...clinicData, email: text })} />}
+                        />
+                        <CustomContainer
+                            label="Adresse du cabinet"
+                            element={<CustomTextInput placeholder="2 parc des princes" value={clinicData.address} onChangeText={text => setClinicData({ ...clinicData, address: text })} />}
+                        />
+                        <CustomContainer
+                            label="Ville"
+                            element={<SelectOption data={cities} initialValue={{ name: "ouarzazate", avatar: null }} onSelect={item => setClinicData({ ...clinicData, city: item.name })} />}
+                        />
+                        <CustomContainer
+                            label="Téléphone"
+                            element={<CustomTextInput placeholder="06 12 34 56 78" value={clinicData.phone} onChangeText={text => setClinicData({ ...clinicData, phone: text })} />}
+                        />
+                        <CustomContainer
+                            label="Fax"
+                            element={<CustomTextInput placeholder="01 23 45 67 89" value={clinicData.fax} onChangeText={text => setClinicData({ ...clinicData, fax: text })} />}
+                        />
                         <WideButton text="Enregistrer" onPress={handleSave} />
                     </View>
                 </View>

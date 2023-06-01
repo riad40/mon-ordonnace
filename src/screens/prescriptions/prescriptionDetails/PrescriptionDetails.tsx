@@ -1,5 +1,5 @@
-import { View, Text, ScrollView, SafeAreaView, Linking, Share } from "react-native"
-import { NavBar, PrescriptionHeader, WideButton } from "../../../components"
+import { View, Text, ScrollView, SafeAreaView } from "react-native"
+import { NavBar, PrescriptionHeader, WideButton, Loading } from "../../../components"
 import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import prescriptionDetailsStyles from "./prescriptionDetailsStyles"
 import styles from "../../../assets/styles"
@@ -12,13 +12,18 @@ import RNHTMLtoPDF from "react-native-html-to-pdf"
 import htmlContent from "../../../helpers/htmlContent"
 import { Prescription } from "../../../@types"
 import FileViewer from "react-native-file-viewer"
+import { RootState } from "../../../state/store"
 
-const PrescriptionDetails = ({ navigation, route }: { navigation: PrescreptionsStackNavProps<"PrescriptionDetails">["navigation"]; route: PrescreptionsStackNavProps<"PrescriptionDetails">["route"] }): JSX.Element => {
+const PrescriptionDetails = ({
+    navigation,
+    route,
+}: {
+    navigation: PrescreptionsStackNavProps<"PrescriptionDetails">["navigation"]
+    route: PrescreptionsStackNavProps<"PrescriptionDetails">["route"]
+}): JSX.Element => {
     const { prescriptionId } = route.params
 
-    const { prescription } = useAppSelector(state => state.prescriptions)
-
-    console.log(prescription)
+    const { prescription, loading } = useAppSelector((state: RootState) => state.prescriptions)
 
     const dispatch = useAppDispatch()
 
@@ -54,6 +59,8 @@ const PrescriptionDetails = ({ navigation, route }: { navigation: PrescreptionsS
         }
     }
 
+    if (loading) return <Loading />
+
     return (
         <SafeAreaView>
             <NavBar navigation={navigation} />
@@ -66,7 +73,7 @@ const PrescriptionDetails = ({ navigation, route }: { navigation: PrescreptionsS
                     </View>
 
                     {prescription?.products.map((product, index) => (
-                        <View style={prescriptionDetailsStyles.productsWrapper}>
+                        <View style={prescriptionDetailsStyles.productsWrapper} key={index}>
                             <Text style={prescriptionDetailsStyles.productTitle}>{product.name}</Text>
                             <View style={prescriptionDetailsStyles.productsDosagesWrapper}>
                                 <Text style={prescriptionDetailsStyles.productsDosagesDateRange}>Prendre pendant {product.duration.split(" ")[0]} jours</Text>
@@ -75,7 +82,9 @@ const PrescriptionDetails = ({ navigation, route }: { navigation: PrescreptionsS
                         </View>
                     ))}
                 </View>
-                <WideButton text="Imprimer" onPress={printPrescription} />
+                <View style={prescriptionDetailsStyles.buttonWrapper}>
+                    <WideButton text="Imprimer" onPress={printPrescription} />
+                </View>
                 <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
         </SafeAreaView>

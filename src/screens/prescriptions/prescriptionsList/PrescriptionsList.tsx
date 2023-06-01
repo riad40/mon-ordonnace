@@ -1,26 +1,40 @@
-import { View, ScrollView, SafeAreaView, FlatList } from "react-native"
-import { NavBar, Header, PrescriptionCard, TextButton } from "../../../components"
+import { View, ScrollView, SafeAreaView } from "react-native"
+import { NavBar, Header, PrescriptionCard, TextButton, Loading } from "../../../components"
 import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import prescriptionsListStyles from "./prescriptionsListStyles"
 import styles from "../../../assets/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 import { useAppDispatch, useAppSelector } from "../../../state/hooks"
-import { useEffect } from "react"
-import { getPrescriptions } from "../../../services/prescriptionServices"
+import { useEffect, useState, useMemo } from "react"
+import { getPrescriptions, getPatients, getProducts } from "../../../services"
 import { RootState } from "../../../state/store"
 
-const PrescriptionsList = ({
-    navigation,
-}: {
-    navigation: PrescreptionsStackNavProps<"PrescriptionsList">["navigation"]
-}): JSX.Element => {
-    const { prescriptions } = useAppSelector((state: RootState) => state.prescriptions)
+const PrescriptionsList = ({ navigation }: { navigation: PrescreptionsStackNavProps<"PrescriptionsList">["navigation"] }): JSX.Element => {
+    const { prescriptions, loading } = useAppSelector((state: RootState) => state.prescriptions)
 
     const dispatch = useAppDispatch()
 
     useEffect(() => {
-        dispatch(getPrescriptions())
-    }, [])
+        const unsubscribe = navigation.addListener("focus", () => {
+            dispatch(getPrescriptions())
+            dispatch(getPatients())
+            dispatch(getProducts())
+        })
+
+        return unsubscribe
+    }, [navigation])
+
+    const [search, setSearch] = useState("")
+
+    const onSearch = (text: string) => {
+        setSearch(text)
+    }
+
+    const filteredPrescriptions = useMemo(() => {
+        return prescriptions.filter(prescription => prescription.patient?.toLowerCase().includes(search.toLowerCase()))
+    }, [prescriptions, search])
+
+    if (loading) return <Loading />
 
     return (
         <SafeAreaView>
@@ -32,23 +46,20 @@ const PrescriptionsList = ({
                     textButton="+ Nouvelle ordonnance"
                     placeholder="Rechercher une ordonnance"
                     onPress={() => navigation.navigate("AddPrescription")}
+                    onChangeText={onSearch}
                 />
                 <View style={prescriptionsListStyles.container}>
-                    <FlatList
-                        data={prescriptions}
-                        keyExtractor={item => item._id}
-                        renderItem={({ item }) => (
-                            <PrescriptionCard
-                                key={item._id}
-                                prescription={item}
-                                onPress={() =>
-                                    navigation.navigate("PrescriptionDetails", {
-                                        prescriptionId: item._id,
-                                    })
-                                }
-                            />
-                        )}
-                    />
+                    {filteredPrescriptions.map(prescription => (
+                        <PrescriptionCard
+                            key={prescription._id}
+                            prescription={prescription}
+                            onPress={() =>
+                                navigation.navigate("PrescriptionDetails", {
+                                    prescriptionId: prescription._id,
+                                })
+                            }
+                        />
+                    ))}
                 </View>
                 <View>
                     <TextButton text="+ Nouvelle ordonnance" style={prescriptionsListStyles.btnCenter} />

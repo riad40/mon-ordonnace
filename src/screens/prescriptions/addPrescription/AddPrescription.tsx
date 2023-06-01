@@ -8,25 +8,20 @@ import { heightPercentageToDP as hp } from "react-native-responsive-screen"
 import { useAppDispatch, useAppSelector } from "../../../state/hooks"
 import { RootState } from "../../../state/store"
 import { useState, useRef } from "react"
-import { getProducts } from "../../../services/productServices"
-import { getPatients } from "../../../services/patientServices"
 import { createPrescription } from "../../../services/prescriptionServices"
 import { Option } from "../../../@types"
+import AwesomeAlert from "react-native-awesome-alerts"
 
 const AddPrescription = ({ navigation }: { navigation: PrescreptionsStackNavProps<"AddPrescription">["navigation"] }): JSX.Element => {
     const allProducts = useAppSelector((state: RootState) => state.products)
 
     const allPatients = useAppSelector((state: RootState) => state.patients)
 
-    const { loading, error } = useAppSelector((state: RootState) => state.prescriptions)
+    const { loading } = useAppSelector((state: RootState) => state.prescriptions)
 
     const submitButtonRef = useRef(null)
 
     const dispatch = useAppDispatch()
-
-    if (allProducts.products.length === 0) dispatch(getProducts())
-
-    if (allPatients.patients.length === 0) dispatch(getPatients())
 
     const onlyProductsNames = allProducts.products.map(product => ({
         name: product.name,
@@ -62,12 +57,9 @@ const AddPrescription = ({ navigation }: { navigation: PrescreptionsStackNavProp
     }
 
     const onSave = () => {
-        // filter the products array to remove empty objects
+        if (productName === "" || dosage === "" || duration === "") return Alert.alert("Erreur", "Veuillez remplir tous les champs")
 
-        console.log({
-            patient: selectedPatient,
-            products,
-        })
+        setProducts([...products, { name: productName, dosage, duration }])
 
         // clear state
         setSelectedPatient(onlyPatientsNamesAndAvatars && onlyPatientsNamesAndAvatars[0])
@@ -98,10 +90,13 @@ const AddPrescription = ({ navigation }: { navigation: PrescreptionsStackNavProp
         setProductName("")
         setDosage("")
         setDuration("")
+
+        return Alert.alert("Success", "Produit ajouté avec succès, vous pouvez ajouter un autre produit")
     }
 
     return (
         <SafeAreaView>
+            <AwesomeAlert show={loading} showProgress={true} progressColor="#18B1D4" closeOnTouchOutside={false} closeOnHardwareBackPress={false} />
             <NavBar navigation={navigation} />
             <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
                 <View style={addPrescriptionStyles.container}>
@@ -114,7 +109,10 @@ const AddPrescription = ({ navigation }: { navigation: PrescreptionsStackNavProp
 
                     <View style={addPrescriptionStyles.formWrapper}>
                         {/* Select patient */}
-                        <CustomContainer label="Patient" element={<SelectOption data={onlyPatientsNamesAndAvatars} initialValue={onlyPatientsNamesAndAvatars && onlyPatientsNamesAndAvatars[0]} onSelect={onSelectedPatient} />} />
+                        <CustomContainer
+                            label="Patient"
+                            element={<SelectOption data={onlyPatientsNamesAndAvatars} initialValue={onlyPatientsNamesAndAvatars && onlyPatientsNamesAndAvatars[0]} onSelect={onSelectedPatient} />}
+                        />
 
                         <ProductInputs
                             onSelectedProduct={(product: Option) => {
@@ -139,7 +137,9 @@ const AddPrescription = ({ navigation }: { navigation: PrescreptionsStackNavProp
                     <TextButton text="+ Rédiger un commentaire" />
                 </View>
 
-                <WideButton text="Enregistrer" onPress={onSave} ref={submitButtonRef} />
+                <View style={addPrescriptionStyles.buttonWrapper}>
+                    <WideButton text="Enregistrer" onPress={onSave} ref={submitButtonRef} />
+                </View>
 
                 <View style={{ marginTop: hp("10%") }} />
             </ScrollView>
