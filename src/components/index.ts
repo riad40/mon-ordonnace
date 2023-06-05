@@ -20,6 +20,7 @@ import DetailsCard from "./common/cards/detailsCard/DetailsCard"
 import ProductInputs from "./prescriptions/productInputs/ProductInputs"
 import ProfileIcon from "./common/nav/profileIcon/ProfileIcon"
 import Loading from "./common/loading/loading"
+import DashboardSkeleton from "./dashboard/loading/DashboardSkeleton"
 
 export {
     NavBar,
@@ -44,4 +45,5 @@ export {
     ProductInputs,
     ProfileIcon,
     Loading,
+    DashboardSkeleton,
 }
