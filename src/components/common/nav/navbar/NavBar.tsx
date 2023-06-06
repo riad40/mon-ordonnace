@@ -22,6 +22,7 @@ const NavBar = ({ navigation }: { navigation?: NavigationProp<any> }): JSX.Eleme
 
     const firstName = user?.fullName.split(" ")[0] || "No"
     const lastName = user?.fullName.split(" ")[1] || "Name"
+    const avatar = user?.avatar ? `${API_URL}${user?.avatar}` : undefined
 
     return (
         <View style={navStyles.container}>
@@ -40,7 +41,7 @@ const NavBar = ({ navigation }: { navigation?: NavigationProp<any> }): JSX.Eleme
                 <Text style={navStyles.boldTitle}>{boldTitle}</Text>
                 <Text style={navStyles.lightTitle}>{lightTitle}</Text>
             </View>
-            <ProfileIcon firstName={firstName} lastName={lastName} />
+            <ProfileIcon firstName={firstName} lastName={lastName} avatar={avatar} />
         </View>
     )
 }
