@@ -8,6 +8,8 @@ import { useState } from "react"
 import { useAppDispatch, useAppSelector } from "../../../state/hooks"
 import { updateClinicInfos } from "../../../services/profileServices"
 import cities from "../../../helpers/data/cities"
+import { RootState } from "../../../state/store"
+import FormValidation from "../../../helpers/formValidation"
 
 const EditClinic = ({ navigation, route }: { navigation: SettingsStackNavProps<"EditClinic">["navigation"]; route: SettingsStackNavProps<"EditClinic">["route"] }): JSX.Element => {
     const { clinic } = route.params
@@ -23,26 +25,32 @@ const EditClinic = ({ navigation, route }: { navigation: SettingsStackNavProps<"
 
     const dispatch = useAppDispatch()
 
-    const { loading, error } = useAppSelector(state => state.profile)
+    const { loading, error } = useAppSelector((state: RootState) => state.profile)
+
+    const { name, email, address, phone, fax } = clinicData
+
+    const valid = FormValidation.editClinicValidation(name, email, address, phone, fax)
 
     const handleSave = () => {
-        if (clinicData.name === "" || clinicData.email === "" || clinicData.address === "" || clinicData.city === "" || clinicData.phone === "" || clinicData.fax === "") {
-            return Alert.alert("Erreur", "Veuillez remplir tous les champs")
-        }
+        if (Object.keys(valid).length > 0) return Alert.alert("Erreur", "Veuillez remplir tous les champs correctement")
 
         dispatch(updateClinicInfos(clinicData))
 
-        if (error) {
-            console.log(error)
-            return
-        }
+        if (error) return Alert.alert("Erreur", "Une erreur est survenue")
 
-        if (loading) {
-            console.log("loading...")
-            return
-        }
-
-        navigation.goBack()
+        Alert.alert(
+            "Succès",
+            "Vos informations ont été mises à jour",
+            [
+                {
+                    text: "OK",
+                    onPress: () => navigation.goBack(),
+                },
+            ],
+            {
+                cancelable: false,
+            },
+        )
     }
 
     return (
@@ -54,14 +62,17 @@ const EditClinic = ({ navigation, route }: { navigation: SettingsStackNavProps<"
                     <View style={editClinicStyles.formContainer}>
                         <CustomContainer
                             label="Nom du cabinet"
+                            validText={valid?.clinicName}
                             element={<CustomTextInput placeholder="Cabinet Redouani" value={clinicData.name} onChangeText={text => setClinicData({ ...clinicData, name: text })} />}
                         />
                         <CustomContainer
                             label="Email du cabinet"
+                            validText={valid?.clinicEmail}
                             element={<CustomTextInput placeholder="some@cabinet.com" value={clinicData.email} onChangeText={text => setClinicData({ ...clinicData, email: text })} />}
                         />
                         <CustomContainer
                             label="Adresse du cabinet"
+                            validText={valid?.clinicAddress}
                             element={<CustomTextInput placeholder="2 parc des princes" value={clinicData.address} onChangeText={text => setClinicData({ ...clinicData, address: text })} />}
                         />
                         <CustomContainer
@@ -70,10 +81,12 @@ const EditClinic = ({ navigation, route }: { navigation: SettingsStackNavProps<"
                         />
                         <CustomContainer
                             label="Téléphone"
+                            validText={valid?.clinicPhoneNumber}
                             element={<CustomTextInput placeholder="06 12 34 56 78" value={clinicData.phone} onChangeText={text => setClinicData({ ...clinicData, phone: text })} />}
                         />
                         <CustomContainer
                             label="Fax"
+                            validText={valid?.clinicFax}
                             element={<CustomTextInput placeholder="01 23 45 67 89" value={clinicData.fax} onChangeText={text => setClinicData({ ...clinicData, fax: text })} />}
                         />
                         <WideButton text="Enregistrer" onPress={handleSave} />
