@@ -21,6 +21,8 @@ import ProductInputs from "./prescriptions/productInputs/ProductInputs"
 import ProfileIcon from "./common/nav/profileIcon/ProfileIcon"
 import Loading from "./common/loading/loading"
 import DashboardSkeleton from "./dashboard/loading/DashboardSkeleton"
+import PatientCardSkeleton from "./patients/loading/PatientListSkeleton"
+import PatientDetailsSkeleton from "./patients/loading/PatientDetailsSkeleton"
 
 export {
     NavBar,
@@ -46,4 +48,6 @@ export {
     ProfileIcon,
     Loading,
     DashboardSkeleton,
+    PatientCardSkeleton,
+    PatientDetailsSkeleton,
 }

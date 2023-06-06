@@ -1,5 +1,5 @@
 import { ScrollView, View, SafeAreaView } from "react-native"
-import { NavBar, PatientCard, Header, TextButton, Loading } from "../../../components"
+import { NavBar, PatientCard, Header, TextButton, PatientCardSkeleton } from "../../../components"
 import { PatientStackNavProps } from "../../../navigation/stacks/patientStack/@types"
 import patientsListStyles from "./patientsListStyles"
 import styles from "../../../assets/styles"
@@ -11,6 +11,7 @@ import { getPatients } from "../../../services/patientServices"
 
 const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"PatientsList">["navigation"] }) => {
     const { patients, loading } = useAppSelector((state: RootState) => state.patients)
+    const { patientsCount } = useAppSelector((state: RootState) => state.dashboard)
 
     const dispatch = useAppDispatch()
 
@@ -27,17 +28,22 @@ const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"Patien
         return patients.filter(patient => patient.firstName?.toLowerCase().includes(search.toLowerCase()) || patient.lastName?.toLowerCase().includes(search.toLowerCase()))
     }, [patients, search])
 
-    if (loading) return <Loading />
-
     return (
         <SafeAreaView>
             <NavBar />
             <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
-                <Header heading="Patients" subHeading="45 300 Patients" textButton="+ Ajouter un patient" placeholder="Rechercher un patient" onChangeText={onSearch} />
+                <Header heading="Patients" subHeading={`${patientsCount.total} Patients`} textButton="+ Ajouter un patient" placeholder="Rechercher un patient" onChangeText={onSearch} />
                 <View style={patientsListStyles.container}>
-                    {filteredPatients?.map(patient => (
-                        <PatientCard key={patient._id} patient={patient} onPress={() => navigation.navigate("PatientDetails", { patientId: patient._id })} />
-                    ))}
+                    {loading ? (
+                        <>
+                            <PatientCardSkeleton />
+                            <PatientCardSkeleton />
+                            <PatientCardSkeleton />
+                            <PatientCardSkeleton />
+                        </>
+                    ) : (
+                        filteredPatients?.map(patient => <PatientCard key={patient._id} patient={patient} onPress={() => navigation.navigate("PatientDetails", { patientId: patient._id })} />)
+                    )}
                 </View>
                 <View>
                     <TextButton text="+ Ajouter un patient" style={patientsListStyles.btnCenter} />
