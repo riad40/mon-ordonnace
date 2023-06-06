@@ -6,7 +6,7 @@ import API_URL from "../../../../configs/API_URL"
 const Option = ({ data, style }: { data: OptionType; style?: object }) => {
     return (
         <View style={[optionStyles.optionContainer, style]}>
-            {data?.avatar && <Image source={{ uri: API_URL + data.avatar }} style={optionStyles.optionsImage} />}
+            {data?.avatar && <Image source={{ uri: data.avatar }} style={optionStyles.optionsImage} />}
             <Text style={optionStyles.optionsText}>{data?.name}</Text>
         </View>
     )
