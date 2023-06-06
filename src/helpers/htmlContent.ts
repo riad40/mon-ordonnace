@@ -1,82 +1,128 @@
 import { Prescription } from "../@types"
 
 const htmlContent = (prescription: Prescription) => {
-    return `
-        <!DOCTYPE html>
-        <html>
-            <head>
-                <style>
-                /* CSS styles for the container */
-                .container {
-                    margin: 20px;
-                }
-                
-                /* CSS styles for the patient name wrapper */
-                .patient-name-wrapper {
-                    margin-bottom: 10px;
-                }
-                
-                /* CSS styles for the patient name bold text */
-                .patient-name-bold {
-                    font-weight: bold;
-                }
-                
-                /* CSS styles for the patient name */
-                .patient-name {
-                    margin-left: 5px;
-                }
-                
-                /* CSS styles for the product wrapper */
-                .product-wrapper {
-                    margin-top: 10px;
-                }
-                
-                /* CSS styles for the product title */
-                .product-title {
-                    font-weight: bold;
-                }
-                
-                /* CSS styles for the products dosages wrapper */
-                .products-dosages-wrapper {
-                    margin-top: 5px;
+    return `<!DOCTYPE html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+            <title>Prescription Details</title>
+    
+            <style>
+                @import url("https://fonts.googleapis.com/css2?&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+                body {
                     display: flex;
-                    flex-direction: row;
+                    align-items: center;
+                    justify-content: center;
+                    height: 100vh;
+                    width: 100vw;
+                    background-color: #f5f5f5;
+                }
+                * {
+                    margin: 0;
+                    padding: 0;
+                    font-family: "Roboto", sans-serif;
+                }
+                .container-details {
+                    width: 350px;
+                    padding: 20px 0;
+                    background-color: white;
+                    border-radius: 5px;
+                }
+                .container {
+                    display: flex;
+                    justify-content: space-between;
                     align-items: center;
                 }
-                
-                /* CSS styles for the products dosages date range */
-                .products-dosages-date-range {
-                    margin-right: 10px;
+                .title-wrapper {
+                    width: 30%;
+                    padding: 10px;
+                    background-color: #18b1d4;
                 }
-                
-                /* CSS styles for the products dosages dosage */
-                .products-dosages-dosage {
-                    font-style: italic;
+                .title {
+                    font-size: medium;
+                    font-weight: bold;
+                    text-transform: uppercase;
+                    color: white;
                 }
-                </style>
-            </head>
-            <body>
-                <div class="container">
-                    <div class="patient-name-wrapper">
-                        <span class="patient-name-bold">Nom du patient :</span>
-                        <span class="patient-name">${prescription?.patient}</span>
-                    </div>
+                .date-wrapper {
+                    width: 70%;
+                    padding: 10px;
+                    background-color: lightblue;
+                    text-align: end;
+                }
+                .date {
+                    font-size: medium;
+                    font-weight: bold;
+                    color: #616161;
+                }
+                .patient-name-wrapper {
+                    padding: 20px;
+                }
+                .patient-name-bold {
+                    font-weight: bold;
+                    color: #858585;
+                }
+                .patient-name {
+                    color: #858585;
+                }
+                .products-wrapper {
+                    margin-bottom: 20px;
+                    padding: 10px 20px;
+                }
+                .product-title {
+                    color: #858585;
+                    text-transform: uppercase;
+                    font-weight: bold;
+                }
+                .product-details {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 10px 20px;
+                    color: #858585;
+                }
+                .product-dosage-date-range {
+                    padding: 5px 0;
+                }
+            </style>
+        </head>
     
-                    ${prescription?.products
-                        .map(
-                            (product, index) => `
-                        <div class="product-wrapper">
-                            <span class="product-title">${product.name}</span>
-                            <div class="products-dosages-wrapper">
-                                <span class="products-dosages-date-range">Prendre pendant ${product.duration.split(" ")[0]} jours</span>
-                                <span class="products-dosages-dosage">${product.dosage}</span>
-                            </div>
-                        </div>`,
-                        )
-                        .join("")}
+        <body>
+            <div class="container-details">
+                <div class="container">
+                    <div class="title-wrapper">
+                        <h2 class="title">Ordonnance</h2>
+                    </div>
+                    <div class="date-wrapper">
+                        <span class="date">Le ${prescription?.createdAt?.split("T")[0].split("-").reverse().join("/")}</span>
+                    </div>
                 </div>
-            </body>
-        </html>
+                <div class="patient-name-wrapper">
+                    <span class="patient-name-bold">Nom du patient :</span>
+                    <span class="patient-name">${prescription?.patient}</span>
+                </div>
+                ${prescription?.products
+                    .map(
+                        (product, index) => `
+                <div class="products-wrapper">
+                    <div class="product">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-details">
+                            <span class="product-dosage-date-range"
+                                >Prendre pendant ${product.duration.split(" ")[0]}
+                                jours</span
+                            >
+                            <span class="product-dosage">${product.dosage}</span>
+                        </div>
+                    </div>
+                </div>
+                `,
+                    )
+                    .join("")}
+            </div>
+        </body>
+    </html>
+    
     `
 }
 
