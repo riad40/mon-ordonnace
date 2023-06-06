@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, SafeAreaView } from "react-native"
-import { NavBar, PrescriptionHeader, WideButton, Loading } from "../../../components"
+import { NavBar, PrescriptionHeader, WideButton, PrescriptionDetailsSkeleton } from "../../../components"
 import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import prescriptionDetailsStyles from "./prescriptionDetailsStyles"
 import styles from "../../../assets/styles"
@@ -43,7 +43,7 @@ const PrescriptionDetails = ({
         if (granted) {
             const options = {
                 html: htmlContent(prescription as Prescription),
-                fileName: "prescription",
+                fileName: `ordonnance-${prescription?.patient}`,
                 directory: "Documents",
             }
 
@@ -59,28 +59,32 @@ const PrescriptionDetails = ({
         }
     }
 
-    if (loading) return <Loading />
-
     return (
         <SafeAreaView>
             <NavBar navigation={navigation} />
             <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
                 <View style={prescriptionDetailsStyles.container}>
-                    <PrescriptionHeader date={`${day}/${month}/${year}`} />
-                    <View style={prescriptionDetailsStyles.patientNameWrapper}>
-                        <Text style={prescriptionDetailsStyles.patientNameBold}>Nom du patient :</Text>
-                        <Text style={prescriptionDetailsStyles.patientName}>{prescription?.patient}</Text>
-                    </View>
-
-                    {prescription?.products.map((product, index) => (
-                        <View style={prescriptionDetailsStyles.productsWrapper} key={index}>
-                            <Text style={prescriptionDetailsStyles.productTitle}>{product.name}</Text>
-                            <View style={prescriptionDetailsStyles.productsDosagesWrapper}>
-                                <Text style={prescriptionDetailsStyles.productsDosagesDateRange}>Prendre pendant {product.duration.split(" ")[0]} jours</Text>
-                                <Text style={prescriptionDetailsStyles.productsDosagesDosage}>{product.dosage}</Text>
+                    {loading ? (
+                        <PrescriptionDetailsSkeleton />
+                    ) : (
+                        <>
+                            <PrescriptionHeader date={`${day}/${month}/${year}`} />
+                            <View style={prescriptionDetailsStyles.patientNameWrapper}>
+                                <Text style={prescriptionDetailsStyles.patientNameBold}>Nom du patient :</Text>
+                                <Text style={prescriptionDetailsStyles.patientName}>{prescription?.patient}</Text>
                             </View>
-                        </View>
-                    ))}
+
+                            {prescription?.products.map((product, index) => (
+                                <View style={prescriptionDetailsStyles.productsWrapper} key={index}>
+                                    <Text style={prescriptionDetailsStyles.productTitle}>{product.name}</Text>
+                                    <View style={prescriptionDetailsStyles.productsDosagesWrapper}>
+                                        <Text style={prescriptionDetailsStyles.productsDosagesDateRange}>Prendre pendant {product.duration.split(" ")[0]} jours</Text>
+                                        <Text style={prescriptionDetailsStyles.productsDosagesDosage}>{product.dosage}</Text>
+                                    </View>
+                                </View>
+                            ))}
+                        </>
+                    )}
                 </View>
                 <View style={prescriptionDetailsStyles.buttonWrapper}>
                     <WideButton text="Imprimer" onPress={printPrescription} />
