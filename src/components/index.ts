@@ -23,6 +23,8 @@ import Loading from "./common/loading/loading"
 import DashboardSkeleton from "./dashboard/loading/DashboardSkeleton"
 import PatientCardSkeleton from "./patients/loading/PatientListSkeleton"
 import PatientDetailsSkeleton from "./patients/loading/PatientDetailsSkeleton"
+import ProductsListSkeleton from "./products/loading/ProductsListSkeleton"
+import ProductDetailsSkeleton from "./products/loading/ProductDetailsSkeleton"
 
 export {
     NavBar,
@@ -50,4 +52,6 @@ export {
     DashboardSkeleton,
     PatientCardSkeleton,
     PatientDetailsSkeleton,
+    ProductsListSkeleton,
+    ProductDetailsSkeleton,
 }

@@ -1,5 +1,5 @@
 import { View, ScrollView, SafeAreaView } from "react-native"
-import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard, Loading } from "../../../components"
+import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard, ProductsListSkeleton } from "../../../components"
 import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productsListStyles from "./productsListStyles"
 import styles from "../../../assets/styles"
@@ -18,6 +18,8 @@ const ProductsList = ({ navigation }: { navigation: ProductsStackNavProps<"Produ
 
     const { products, loading } = useAppSelector((state: RootState) => state.products)
 
+    const { productsCount } = useAppSelector((state: RootState) => state.dashboard)
+
     const [search, setSearch] = useState<string>("")
 
     const onSearch = (text: string) => {
@@ -28,8 +30,6 @@ const ProductsList = ({ navigation }: { navigation: ProductsStackNavProps<"Produ
         return products.filter(product => product.name.toLowerCase().includes(search.toLowerCase()))
     }, [products, search])
 
-    if (loading) return <Loading />
-
     return (
         <SafeAreaView>
             <NavBar />
@@ -38,16 +38,23 @@ const ProductsList = ({ navigation }: { navigation: ProductsStackNavProps<"Produ
                     <View style={productsListStyles.wrapper}>
                         <View>
                             <Heading text="Produits" />
-                            <SubHeading text="45 300 Produits" />
+                            <SubHeading text={`${productsCount} Produits`} />
                         </View>
                         <TextButton text="+ Suggérer un produit" />
                     </View>
                     <SearchInput placeholder="Rechercher un produit" onChangeText={onSearch} />
                 </View>
 
-                {filteredProducts?.map(product => (
-                    <ProductCard product={product} onPress={() => navigation.navigate("ProductDetails", { productId: product._id })} key={product._id} />
-                ))}
+                {loading ? (
+                    <>
+                        <ProductsListSkeleton />
+                        <ProductsListSkeleton />
+                        <ProductsListSkeleton />
+                        <ProductsListSkeleton />
+                    </>
+                ) : (
+                    filteredProducts.map(product => <ProductCard product={product} onPress={() => navigation.navigate("ProductDetails", { productId: product._id })} key={product._id} />)
+                )}
 
                 <View>
                     <TextButton text="+ Suggérer un produit" style={productsListStyles.btnCenter} />
