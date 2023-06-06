@@ -1,10 +1,10 @@
-import { View, Image, ScrollView, SafeAreaView, Text, TouchableOpacity } from "react-native"
-import { NavBar, TextButton, DetailsCard, ProfileIcon } from "../../../components"
+import { View, Image, ScrollView, SafeAreaView, Alert, TouchableOpacity, Text } from "react-native"
+import { NavBar, TextButton, DetailsCard, ProfileIcon, Loading } from "../../../components"
 import { SettingsStackNavProps } from "../../../navigation/stacks/settingsStack/@types"
 import profileStyles from "./profileStyles"
 import styles from "../../../assets/styles"
 import { heightPercentageToDP as hp } from "react-native-responsive-screen"
-import { useEffect, useState } from "react"
+import { useState, useEffect } from "react"
 import { useAppDispatch, useAppSelector } from "../../../state/hooks"
 import { getUserInfos, getClinicInfos } from "../../../services/profileServices"
 import { RootState } from "../../../state/store"
@@ -21,12 +21,14 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
 
     const [show, setShow] = useState(false)
 
-    const { user, clinic } = useAppSelector((state: RootState) => state.profile)
+    const { user, clinic, error } = useAppSelector((state: RootState) => state.profile)
 
     useEffect(() => {
-        dispatch(getUserInfos())
-        dispatch(getClinicInfos())
-    }, [dispatch, show])
+        navigation.addListener("focus", () => {
+            dispatch(getUserInfos())
+            dispatch(getClinicInfos())
+        })
+    }, [navigation, dispatch, user])
 
     const updateAvatar = (uri: string, type: string) => {
         const formData = new FormData()
@@ -39,79 +41,96 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
 
         dispatch(updateUserAvatar(formData))
 
+        if (error) return Alert.alert("Erreur", "Une erreur est survenue lors de la mise à jour de votre photo de profile")
+
         setShow(false)
     }
 
     const handleUploadImage = async () => {
         const imagesPermission = await requestReadAccessImagesPermission()
 
-        if (imagesPermission) {
-            const options: any = {
-                mediaType: "photo",
-                quality: 0.5,
-                maxWidth: 500,
-                maxHeight: 500,
-                includeBase64: true,
-            }
+        if (!imagesPermission) {
+            const permission = await requestReadAccessImagesPermission()
 
-            launchImageLibrary(options, (response: any) => {
-                if (response.didCancel) return
-
-                if (response.error || response.errorMessage) {
-                    console.log(response.error || response.errorMessage)
-                    return
-                }
-
-                const uri = response.assets[0].uri
-                const type = "image/" + response.assets[0].fileName.split(".")[1].toLowerCase() || "jpg"
-
-                updateAvatar(uri, type)
-            })
+            if (!permission) return setShow(false)
         }
+
+        const options: any = {
+            mediaType: "photo",
+            quality: 0.5,
+            maxWidth: 200,
+            maxHeight: 200,
+            includeBase64: true,
+        }
+
+        const response: any = await launchImageLibrary(options)
+
+        if (response.didCancel) return setShow(false)
+
+        const uri = response.assets[0].uri
+
+        const type = response.assets[0].type
+
+        updateAvatar(uri, type)
     }
 
     const handleTakePicture = async () => {
         const cameraPermission = await requestAccessCameraPermission()
 
-        if (cameraPermission) {
-            const options: any = {
-                mediaType: "photo",
-                quality: 0.5,
-                maxWidth: 500,
-                maxHeight: 500,
-                includeBase64: true,
-            }
+        if (!cameraPermission) {
+            const permission = await requestAccessCameraPermission()
 
-            launchCamera(options, (response: any) => {
-                if (response.didCancel) {
-                    setShow(false)
-                    return
-                }
-                const uri = response.assets[0].uri
-                const type = response.assets[0].type
-                updateAvatar(uri, type)
-            })
-        } else {
-            setShow(false)
+            if (!permission) return setShow(false)
         }
+
+        const options: any = {
+            mediaType: "photo",
+            quality: 0.5,
+            maxWidth: 200,
+            maxHeight: 200,
+            includeBase64: true,
+        }
+
+        const response: any = await launchCamera(options)
+
+        if (response.didCancel) return setShow(false)
+
+        const uri = response.assets[0].uri
+
+        const type = response.assets[0].type
+
+        updateAvatar(uri, type)
     }
+
+    if (!user || !clinic) return <Loading />
 
     return (
         <SafeAreaView>
             <NavBar navigation={navigation} />
             <ScrollView nestedScrollEnabled={true} style={styles.appContainer}>
                 <View style={profileStyles.container}>
+                    {/* Profile Picture */}
                     {user?.avatar ? (
-                        <Image source={{ uri: API_URL + user?.avatar }} style={profileStyles.image} />
+                        <Image
+                            source={{
+                                uri: API_URL + user?.avatar,
+                                cache: "reload",
+                                headers: { Pragma: "no-cache" },
+                            }}
+                            style={profileStyles.image}
+                        />
                     ) : (
-                        <ProfileIcon firstName={user?.fullName.split(" ")[0] || "No"} lastName={user?.fullName.split(" ")[1] || "Name"} />
+                        <ProfileIcon firstName={user?.fullName.split(" ")[0] || "No"} lastName={user?.fullName.split(" ")[1] || "Name"} style={{ width: 100, height: 100, borderRadius: 100 / 2 }} />
                     )}
+
+                    {/* change profile picture */}
                     <TextButton
                         text="Changer photo de profile"
                         onPress={() => {
                             setShow(!show)
                         }}
                     />
+
                     {/* modal */}
                     <Modal isVisible={show} onBackdropPress={() => setShow(false)} style={profileStyles.modal}>
                         <View style={profileStyles.modalContainer}>
@@ -126,6 +145,7 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
                         </View>
                     </Modal>
                 </View>
+
                 {/* General Infos */}
                 <DetailsCard
                     heading="Informations générales"
@@ -158,6 +178,7 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
                     ]}
                     onPress={() => navigation.navigate("EditProfile", { user })}
                 />
+
                 {/* Cabinet */}
                 <DetailsCard
                     heading="Cabinet"
