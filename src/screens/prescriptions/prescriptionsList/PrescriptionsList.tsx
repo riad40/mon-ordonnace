@@ -1,5 +1,5 @@
 import { View, ScrollView, SafeAreaView } from "react-native"
-import { NavBar, Header, PrescriptionCard, TextButton, PrescriptionsListSkeleton } from "../../../components"
+import { NavBar, Header, PrescriptionCard, TextButton, PrescriptionsListSkeleton, NoResults } from "../../../components"
 import { PrescreptionsStackNavProps } from "../../../navigation/stacks/prescriptionsStack/@types"
 import prescriptionsListStyles from "./prescriptionsListStyles"
 import styles from "../../../assets/styles"
@@ -70,6 +70,9 @@ const PrescriptionsList = ({ navigation }: { navigation: PrescreptionsStackNavPr
                         ))}
                     </View>
                 )}
+
+                {filteredPrescriptions.length === 0 && <NoResults text={search} />}
+
                 <View>
                     <TextButton text="+ Nouvelle ordonnance" style={prescriptionsListStyles.btnCenter} />
                 </View>

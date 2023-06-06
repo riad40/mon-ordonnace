@@ -1,5 +1,5 @@
 import { ScrollView, View, SafeAreaView } from "react-native"
-import { NavBar, PatientCard, Header, TextButton, PatientCardSkeleton } from "../../../components"
+import { NavBar, PatientCard, Header, TextButton, PatientCardSkeleton, NoResults } from "../../../components"
 import { PatientStackNavProps } from "../../../navigation/stacks/patientStack/@types"
 import patientsListStyles from "./patientsListStyles"
 import styles from "../../../assets/styles"
@@ -45,6 +45,7 @@ const PatientsList = ({ navigation }: { navigation: PatientStackNavProps<"Patien
                         filteredPatients?.map(patient => <PatientCard key={patient._id} patient={patient} onPress={() => navigation.navigate("PatientDetails", { patientId: patient._id })} />)
                     )}
                 </View>
+                {filteredPatients.length === 0 && <NoResults text={search} />}
                 <View>
                     <TextButton text="+ Ajouter un patient" style={patientsListStyles.btnCenter} />
                 </View>

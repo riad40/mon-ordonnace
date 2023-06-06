@@ -27,6 +27,7 @@ import ProductsListSkeleton from "./products/loading/ProductsListSkeleton"
 import ProductDetailsSkeleton from "./products/loading/ProductDetailsSkeleton"
 import PrescriptionsListSkeleton from "./prescriptions/loading/PrescriptionsListSkeleton"
 import PrescriptionDetailsSkeleton from "./prescriptions/loading/PrescreptionDetailsSkeleton"
+import NoResults from "./common/cards/noResults/NoResults"
 
 export {
     NavBar,
@@ -58,4 +59,5 @@ export {
     ProductDetailsSkeleton,
     PrescriptionsListSkeleton,
     PrescriptionDetailsSkeleton,
+    NoResults,
 }

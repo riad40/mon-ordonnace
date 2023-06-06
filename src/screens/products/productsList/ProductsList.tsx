@@ -1,5 +1,5 @@
 import { View, ScrollView, SafeAreaView } from "react-native"
-import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard, ProductsListSkeleton } from "../../../components"
+import { NavBar, Heading, SubHeading, TextButton, SearchInput, ProductCard, ProductsListSkeleton, NoResults } from "../../../components"
 import { ProductsStackNavProps } from "../../../navigation/stacks/productsStack/@types"
 import productsListStyles from "./productsListStyles"
 import styles from "../../../assets/styles"
@@ -55,6 +55,8 @@ const ProductsList = ({ navigation }: { navigation: ProductsStackNavProps<"Produ
                 ) : (
                     filteredProducts.map(product => <ProductCard product={product} onPress={() => navigation.navigate("ProductDetails", { productId: product._id })} key={product._id} />)
                 )}
+
+                {filteredProducts.length === 0 && <NoResults text={search} />}
 
                 <View>
                     <TextButton text="+ Suggérer un produit" style={productsListStyles.btnCenter} />
