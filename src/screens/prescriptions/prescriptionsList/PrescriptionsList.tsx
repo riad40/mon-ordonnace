@@ -9,7 +9,11 @@ import { useEffect, useState, useMemo } from "react"
 import { getPrescriptions, getPatients, getProducts } from "../../../services"
 import { RootState } from "../../../state/store"
 
-const PrescriptionsList = ({ navigation }: { navigation: PrescreptionsStackNavProps<"PrescriptionsList">["navigation"] }): JSX.Element => {
+const PrescriptionsList = ({
+    navigation,
+}: {
+    navigation: PrescreptionsStackNavProps<"PrescriptionsList">["navigation"]
+}): JSX.Element => {
     const { prescriptions, loading } = useAppSelector((state: RootState) => state.prescriptions)
     const { prescriptionsCount } = useAppSelector((state: RootState) => state.dashboard)
 
@@ -32,7 +36,7 @@ const PrescriptionsList = ({ navigation }: { navigation: PrescreptionsStackNavPr
     }
 
     const filteredPrescriptions = useMemo(() => {
-        return prescriptions.filter(prescription => prescription.patient?.toLowerCase().includes(search.toLowerCase()))
+        return prescriptions.filter(prescription => prescription?.patient?.toLowerCase().includes(search.toLowerCase()))
     }, [prescriptions, search])
 
     return (
