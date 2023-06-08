@@ -1,7 +1,14 @@
 class FormValidation {
     public static emailRegex = /^[a-zA-Z0-9._%+-]+@([a-zA-Z0-9-]+\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
 
-    public static editProfileValidation(fullName: string, specialty: string, phoneNumber: string, email: string, dateOfBirth: string, inpe: string) {
+    public static editProfileValidation(
+        fullName: string,
+        specialty: string,
+        phoneNumber: string,
+        email: string,
+        dateOfBirth: string,
+        inpe: string,
+    ) {
         let errors: any = {}
 
         const dateOfBirthRegex = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/
@@ -33,7 +40,13 @@ class FormValidation {
         return errors
     }
 
-    public static editClinicValidation(clinicName: string, clinicEmail: string, clinicAddress: string, clinicPhoneNumber: string, clinicFax: string) {
+    public static editClinicValidation(
+        clinicName: string,
+        clinicEmail: string,
+        clinicAddress: string,
+        clinicPhoneNumber: string,
+        clinicFax: string,
+    ) {
         let errors: any = {}
 
         const clinicAddressRegex = /^[a-zA-Z0-9\s,'-]*$/
@@ -59,6 +72,24 @@ class FormValidation {
         }
 
         return errors
+    }
+
+    public static addNewProduct = (dosage: string, duration: string) => {
+        let errors: any = {}
+
+        if (dosage?.trim().length < 5) {
+            errors.dosage = "Dosage doit avoir au moins 5 caractères"
+        }
+
+        if (duration?.trim().length < 5) {
+            errors.duration = "Durée doit avoir au moins 5 caractères"
+        }
+
+        return errors
+    }
+
+    public static objectIsEmpty = (obj: any) => {
+        return Object.values(obj).some((element: any) => element === "")
     }
 }
 

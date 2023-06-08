@@ -61,6 +61,32 @@ const addPrescriptionStyles = StyleSheet.create({
         paddingHorizontal: wp("5%"),
         marginVertical: hp("1%"),
     },
+    center: {
+        alignItems: "center",
+    },
+    removeProductButton: {
+        backgroundColor: "lightgrey",
+        borderRadius: hp(".5%"),
+        marginBottom: hp("3%"),
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingVertical: hp(".5%"),
+        paddingHorizontal: wp("2%"),
+    },
+    removeProductButtonTextWrapper: {
+        width: "70%",
+    },
+    removeProductButtonText: {
+        fontFamily: "SourceSansPro-SemiBold",
+        fontSize: FONT_SIZE_14,
+        color: "#000000",
+    },
+    removeProductButtonIconWrapper: {
+        width: "30%",
+        borderRadius: hp(".5%"),
+        alignItems: "flex-end",
+    },
 })
 
 export default addPrescriptionStyles
