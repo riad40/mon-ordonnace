@@ -52,7 +52,7 @@ class FormValidation {
         const clinicAddressRegex = /^[a-zA-Z0-9\s,'-]*$/
 
         if (clinicName.trim().length < 5) {
-            errors.clinicName = "Nom du cabinet doit avoir au moins 5 caractères"
+            errors.clinicName = "Ce nom de clinique est invalide"
         }
 
         if (clinicEmail.trim().length < 10 || !this.emailRegex.test(clinicEmail.trim())) {
@@ -72,24 +72,6 @@ class FormValidation {
         }
 
         return errors
-    }
-
-    public static addNewProduct = (dosage: string, duration: string) => {
-        let errors: any = {}
-
-        if (dosage?.trim().length < 5) {
-            errors.dosage = "Dosage doit avoir au moins 5 caractères"
-        }
-
-        if (duration?.trim().length < 5) {
-            errors.duration = "Durée doit avoir au moins 5 caractères"
-        }
-
-        return errors
-    }
-
-    public static objectIsEmpty = (obj: any) => {
-        return Object.values(obj).some((element: any) => element === "")
     }
 }
 

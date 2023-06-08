@@ -94,7 +94,11 @@ const htmlContent = (prescription: Prescription) => {
                         <h2 class="title">Ordonnance</h2>
                     </div>
                     <div class="date-wrapper">
-                        <span class="date">Le ${prescription?.createdAt?.split("T")[0].split("-").reverse().join("/")}</span>
+                        <span class="date">Le ${prescription?.createdAt
+                            ?.split("T")[0]
+                            .split("-")
+                            .reverse()
+                            .join("/")}</span>
                     </div>
                 </div>
                 <div class="patient-name-wrapper">
