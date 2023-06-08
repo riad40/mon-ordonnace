@@ -41,7 +41,8 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
 
         dispatch(updateUserAvatar(formData))
 
-        if (error) return Alert.alert("Erreur", "Une erreur est survenue lors de la mise à jour de votre photo de profile")
+        if (error)
+            return Alert.alert("Erreur", "Une erreur est survenue lors de la mise à jour de votre photo de profile")
 
         setShow(false)
     }
@@ -66,6 +67,9 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
         const response: any = await launchImageLibrary(options)
 
         if (response.didCancel) return setShow(false)
+
+        if (response.errorMessage)
+            return Alert.alert("Erreur", "Une erreur est survenue lors de la récupération de votre photo")
 
         const uri = response.assets[0].uri
 
@@ -95,6 +99,8 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
 
         if (response.didCancel) return setShow(false)
 
+        if (response.errorMessage) return Alert.alert("Erreur", "Une erreur est survenue lors de la prise de photo")
+
         const uri = response.assets[0].uri
 
         const type = response.assets[0].type
@@ -120,7 +126,11 @@ const Profile = ({ navigation }: { navigation: SettingsStackNavProps<"Profile">[
                             style={profileStyles.image}
                         />
                     ) : (
-                        <ProfileIcon firstName={user?.fullName.split(" ")[0] || "No"} lastName={user?.fullName.split(" ")[1] || "Name"} style={{ width: 100, height: 100, borderRadius: 100 / 2 }} />
+                        <ProfileIcon
+                            firstName={user?.fullName.split(" ")[0] || "No"}
+                            lastName={user?.fullName.split(" ")[1] || "Name"}
+                            style={{ width: 100, height: 100, borderRadius: 100 / 2 }}
+                        />
                     )}
 
                     {/* change profile picture */}
