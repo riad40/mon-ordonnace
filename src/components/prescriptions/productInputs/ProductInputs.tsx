@@ -1,6 +1,7 @@
 import { SelectOption, CustomContainer, CustomTextInput } from "../../../components"
 import { Option } from "../../../@types"
-import { Text } from "react-native"
+import customContainerStyles from "../../common/form/customContainer/customContainerStyles"
+import { Text, View } from "react-native"
 
 const ProductInputs = ({
     onSelectedProduct,
@@ -9,7 +10,7 @@ const ProductInputs = ({
     onlyProductsNames,
     dosage,
     duration,
-    isValid,
+    errors,
     index,
 }: {
     onSelectedProduct?: (product: Option, index: number) => void
@@ -18,9 +19,8 @@ const ProductInputs = ({
     onlyProductsNames: Option[]
     dosage?: string
     duration?: string
-    isValid?: { dosage?: string; duration?: string }
-    index: number
     errors?: any
+    index: number
 }): JSX.Element => {
     return (
         <>
@@ -37,28 +37,49 @@ const ProductInputs = ({
             />
 
             {/* Select dosage */}
-            <CustomContainer
-                label="Posologie"
-                validText={isValid?.dosage}
-                element={
-                    <CustomTextInput
-                        placeholder="Posologie"
-                        onChangeText={text => onDosageChange && onDosageChange(text, index)}
-                    />
-                }
-            />
+            <View
+                style={[
+                    customContainerStyles.container,
+                    {
+                        borderColor: errors && errors.duration ? "#FF0000" : "#C6C6C6",
+                    },
+                ]}>
+                <View style={customContainerStyles.labelContainer}>
+                    <Text style={customContainerStyles.label}>Posologie</Text>
+                </View>
+                <CustomTextInput
+                    placeholder="Posologie"
+                    onChangeText={text => onDosageChange && onDosageChange(text, index)}
+                />
+                {errors && errors.dosage ? (
+                    <View style={customContainerStyles.errorContainer}>
+                        <Text style={customContainerStyles.errorText}>{errors.dosage}</Text>
+                    </View>
+                ) : null}
+            </View>
 
             {/* Enter duration */}
-            <CustomContainer
-                label="Durée du traitement"
-                validText={isValid?.duration}
-                element={
-                    <CustomTextInput
-                        placeholder="Durée du traitement"
-                        onChangeText={text => onDurationChange && onDurationChange(text, index)}
-                    />
-                }
-            />
+            <View
+                style={[
+                    customContainerStyles.container,
+                    {
+                        borderColor: errors && errors.duration ? "#FF0000" : "#C6C6C6",
+                    },
+                ]}>
+                <View style={customContainerStyles.labelContainer}>
+                    <Text style={customContainerStyles.label}>Duration</Text>
+                </View>
+
+                <CustomTextInput
+                    placeholder="Durée du traitement"
+                    onChangeText={text => onDurationChange && onDurationChange(text, index)}
+                />
+                {errors && errors.duration ? (
+                    <View style={customContainerStyles.errorContainer}>
+                        <Text style={customContainerStyles.errorText}>{errors.duration}</Text>
+                    </View>
+                ) : null}
+            </View>
         </>
     )
 }

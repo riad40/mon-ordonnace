@@ -18,7 +18,6 @@ import { RootState } from "../../../state/store"
 import { useState } from "react"
 import { createPrescription } from "../../../services/prescriptionServices"
 import { Option } from "../../../@types"
-import FormValidation from "../../../helpers/formValidation"
 
 const AddPrescription = ({
     navigation,
@@ -47,6 +46,7 @@ const AddPrescription = ({
     const [selectedProduct, setSelectedProduct] = useState<Option>(onlyProductsNames[0])
     const [dosage, setDosage] = useState<string>("")
     const [duration, setDuration] = useState<string>("")
+    const [errors, setErrors] = useState<Record<string, string>>({})
     const [isValid, setIsValid] = useState<boolean>(false)
 
     const handleProductChange = (item: Option, index: number) => {
@@ -109,6 +109,47 @@ const AddPrescription = ({
     ])
 
     const addProduct = () => {
+        // validate the inputs
+        const inputErrors: Record<string, string> = {}
+
+        // Validate dosage
+        if (!dosage) {
+            inputErrors.dosage = "Cette valeur est invalide"
+        }
+
+        // Validate duration
+        if (!duration) {
+            inputErrors.duration = "Cette valeur est invalide"
+        }
+
+        // Update errors state
+        setErrors(inputErrors)
+
+        // set the errors props to the product component
+        setProductComponent(prevState => {
+            const updatedComponents = [...prevState]
+            updatedComponents[productComponent.length - 1].component = (
+                <ProductInputs
+                    onlyProductsNames={onlyProductsNames}
+                    onSelectedProduct={(item: Option) => {
+                        handleProductChange(item, productComponent.length - 1)
+                    }}
+                    onDosageChange={(text: string) => {
+                        handleDosageChange(text, productComponent.length - 1)
+                    }}
+                    onDurationChange={(text: string) => {
+                        handleDurationChange(text, productComponent.length - 1)
+                    }}
+                    index={productComponent.length - 1}
+                    errors={inputErrors}
+                />
+            )
+            return updatedComponents
+        })
+
+        // If there are any errors, stop the execution
+        if (Object.keys(inputErrors).length > 0) return setIsValid(true)
+
         // generate new component
         const newProductComponent = {
             component: (
@@ -150,6 +191,48 @@ const AddPrescription = ({
     }
 
     const savePrescription = () => {
+        // validate the inputs
+        const inputErrors: Record<string, string> = {}
+
+        // Validate dosage
+        if (!dosage) {
+            inputErrors.dosage = "Cette valeur est invalide"
+        }
+
+        // Validate duration
+        if (!duration) {
+            inputErrors.duration = "Cette valeur est invalide"
+        }
+
+        // Update errors state
+        setErrors(inputErrors)
+
+        // set the errors props to the product component
+        setProductComponent(prevState => {
+            const updatedComponents = [...prevState]
+            updatedComponents[productComponent.length - 1].component = (
+                <ProductInputs
+                    onlyProductsNames={onlyProductsNames}
+                    onSelectedProduct={(item: Option) => {
+                        handleProductChange(item, productComponent.length - 1)
+                    }}
+                    onDosageChange={(text: string) => {
+                        handleDosageChange(text, productComponent.length - 1)
+                    }}
+                    onDurationChange={(text: string) => {
+                        handleDurationChange(text, productComponent.length - 1)
+                    }}
+                    index={productComponent.length - 1}
+                    errors={inputErrors}
+                />
+            )
+            return updatedComponents
+        })
+
+        // If there are any errors, stop the execution
+        if (Object.keys(inputErrors).length > 0) return setIsValid(true)
+
+        setIsValid(false)
         // retrieve the data from the components
         const products = productComponent.map(item => item.data)
 
@@ -204,9 +287,9 @@ const AddPrescription = ({
                         />
                         {productComponent.map((item, index) =>
                             index === 0 ? (
-                                item.component
+                                <View key={item.key}>{item.component}</View>
                             ) : (
-                                <View>
+                                <View key={item.key}>
                                     <View style={addPrescriptionStyles.removeProductButton}>
                                         <View style={addPrescriptionStyles.removeProductButtonTextWrapper}>
                                             <Text style={addPrescriptionStyles.removeProductButtonText}>
@@ -232,7 +315,7 @@ const AddPrescription = ({
                 </View>
 
                 <View style={addPrescriptionStyles.buttonWrapper}>
-                    <WideButton text="Enregistrer" onPress={savePrescription} disabled={isValid} />
+                    <WideButton text="Enregistrer" onPress={savePrescription} />
                 </View>
 
                 <View style={{ marginTop: hp("10%") }} />
