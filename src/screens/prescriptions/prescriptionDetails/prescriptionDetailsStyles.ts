@@ -55,6 +55,10 @@ const prescriptionDetailsStyles = StyleSheet.create({
         fontFamily: "SourceSansPro-SemiBold",
         fontSize: FONT_SIZE_14,
     },
+    buttonWrapper: {
+        paddingHorizontal: wp("5%"),
+        marginVertical: hp("1%"),
+    },
 })
 
 export default prescriptionDetailsStyles

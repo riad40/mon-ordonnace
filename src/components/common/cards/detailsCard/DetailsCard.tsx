@@ -1,17 +1,7 @@
 import { View, Text, Image, TouchableOpacity } from "react-native"
 import detailsCardStyles from "./detailsCardStyles"
 
-const DetailsCard = ({
-    heading,
-    details,
-    edit,
-    onPress,
-}: {
-    heading: string
-    details: { title: string; value: string }[]
-    edit?: boolean
-    onPress?: () => void
-}): JSX.Element => {
+const DetailsCard = ({ heading, details, edit, onPress }: { heading: string; details: { title: string; value: string }[]; edit?: boolean; onPress?: () => void }): JSX.Element => {
     return (
         <View style={detailsCardStyles.detailsContainer}>
             <View style={detailsCardStyles.detailsWrapper}>
@@ -23,7 +13,7 @@ const DetailsCard = ({
                     </TouchableOpacity>
                 )}
             </View>
-            {details.map((detail, index) => (
+            {details?.map((detail, index) => (
                 <View
                     key={index}
                     style={[

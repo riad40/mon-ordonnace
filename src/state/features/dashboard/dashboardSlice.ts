@@ -14,7 +14,7 @@ interface DashboardState {
         week: number
         month: number
     }
-    productsCount: number
+    productsCount: { total: number }
     loading: boolean
     error: string | null
 }
@@ -32,8 +32,7 @@ const initialState: DashboardState = {
         week: 0,
         month: 0,
     },
-    productsCount: 0,
-
+    productsCount: { total: 0 },
     loading: false,
     error: null,
 }
@@ -42,48 +41,43 @@ const dashboardSlice = createSlice({
     name: "dashboard",
     initialState,
     reducers: {},
-    extraReducers: {
+    extraReducers: builder => {
         // get patients count
-        [getPatientsCount.pending.type]: state => {
+        builder.addCase(getPatientsCount.pending, state => {
             state.loading = true
-        },
-        [getPatientsCount.fulfilled.type]: (state, { payload }: PayloadAction<DashboardState["patientsCount"]>) => {
+        })
+        builder.addCase(getPatientsCount.fulfilled, (state, action: PayloadAction<any>) => {
             state.loading = false
-            state.patientsCount = payload
-        },
-        [getPatientsCount.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+            state.patientsCount = action.payload
+        })
+        builder.addCase(getPatientsCount.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false
-            state.error = payload
-        },
-
+            state.error = action.payload
+        })
         // get prescriptions count
-        [getPrescriptionsCount.pending.type]: state => {
+        builder.addCase(getPrescriptionsCount.pending, state => {
             state.loading = true
-        },
-        [getPrescriptionsCount.fulfilled.type]: (
-            state,
-            { payload }: PayloadAction<DashboardState["prescriptionsCount"]>,
-        ) => {
+        })
+        builder.addCase(getPrescriptionsCount.fulfilled, (state, action: PayloadAction<any>) => {
             state.loading = false
-            state.prescriptionsCount = payload
-        },
-        [getPrescriptionsCount.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+            state.prescriptionsCount = action.payload
+        })
+        builder.addCase(getPrescriptionsCount.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false
-            state.error = payload
-        },
-
+            state.error = action.payload
+        })
         // get products count
-        [getProductsCount.pending.type]: state => {
+        builder.addCase(getProductsCount.pending, state => {
             state.loading = true
-        },
-        [getProductsCount.fulfilled.type]: (state, { payload }: PayloadAction<DashboardState["productsCount"]>) => {
+        })
+        builder.addCase(getProductsCount.fulfilled, (state, action: PayloadAction<any>) => {
             state.loading = false
-            state.productsCount = payload
-        },
-        [getProductsCount.rejected.type]: (state, { payload }: PayloadAction<any>) => {
+            state.productsCount = action.payload
+        })
+        builder.addCase(getProductsCount.rejected, (state, action: PayloadAction<any>) => {
             state.loading = false
-            state.error = payload
-        },
+            state.error = action.payload
+        })
     },
 })
 

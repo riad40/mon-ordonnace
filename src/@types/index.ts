@@ -1,26 +1,74 @@
 type Product = {
-    productId: number
+    _id: string
     name: string
-    type: string
-    therapeuticClass: string
-    image: string
+    dci: string
+    classTherapeutic: string
+    laboratory: string
+    avatar: string
+    dosage: {
+        ageGroup: string
+        instructions: string
+    }[]
 }
 
 type Prescription = {
-    prescriptionId: number | string
-    patientName: string
-    date: string
+    _id: string
+    id: number
+    patient: string
+    products: {
+        name: string
+        dosage: string
+        duration: string
+    }[]
     status: PrescriptionStatus
-    image: string
+    createdAt: string
+    avatar: string
 }
 
 type PrescriptionStatus = "Brouillon" | "Enregistrée"
 
 type Patient = {
-    patientId: number | string
-    name: string
-    age: number
-    image: string
+    _id: string
+    firstName: string
+    lastName: string
+    cin: string
+    phoneNumber: string
+    dateOfBirth: string
+    avatar: string
+    prescriptions: string[]
+    createdAt: string
 }
 
-export type { Product, Prescription, Patient }
+/** ============================  Option type ============================ */
+
+type Option = {
+    name: string
+    avatar: string | null
+}
+
+/** ============================  User && Clinic types ============================ */
+
+type User = {
+    _id: string
+    fullName: string
+    email: string
+    password: string
+    avatar: string
+    speciality: string
+    dateOfBirth: string
+    inpe: string
+    phone: string
+}
+
+type Clinic = {
+    _id: string
+    name: string
+    address: string
+    city: string
+    phone: string
+    email: string
+    fax: string
+    owner: string
+}
+
+export type { Product, Prescription, Patient, Option, User, Clinic }

@@ -7,12 +7,14 @@ const Header = ({
     subHeading,
     textButton,
     placeholder,
+    onChangeText,
     onPress,
 }: {
     heading: string
     subHeading: string
     textButton: string
     placeholder: string
+    onChangeText?: (text: string) => void
     onPress?: () => void
 }): JSX.Element => {
     return (
@@ -24,7 +26,7 @@ const Header = ({
                 </View>
                 <TextButton text={textButton} onPress={onPress} />
             </View>
-            <SearchInput placeholder={placeholder} />
+            <SearchInput placeholder={placeholder} onChangeText={onChangeText} />
         </View>
     )
 }

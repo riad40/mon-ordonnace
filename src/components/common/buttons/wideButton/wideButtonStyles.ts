@@ -7,7 +7,7 @@ const wideButtonStyles = StyleSheet.create({
     button: {
         backgroundColor: colors.coldBlue,
         paddingVertical: hp("2.5%"),
-        width: "90%",
+        width: "100%",
         alignSelf: "center",
         marginVertical: hp("1.5%"),
         borderRadius: hp("1.5%"),
