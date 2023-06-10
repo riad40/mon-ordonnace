@@ -1,18 +1,16 @@
 import api from "../configs/api"
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-/** ============================ Patients Resource ============================ */
-
-// Get patients count
+// Patients count
 const getPatientsCount = createAsyncThunk("patients/count", async thunkAPI => {
     try {
-        // get patients count
+        // count
         const count = await api.get("/patients/count")
 
-        // get patients count current week
+        // count current week
         const countCurrentWeek = await api.get("/patients/count/week")
 
-        // get patients count current month
+        // count current month
         const countCurrentMonth = await api.get("/patients/count/month")
 
         // return patients count
@@ -26,19 +24,18 @@ const getPatientsCount = createAsyncThunk("patients/count", async thunkAPI => {
     }
 })
 
-// get prescriptions count
+// Prescriptions
 const getPrescriptionsCount = createAsyncThunk("prescriptions/count", async thunkAPI => {
     try {
-        // get prescriptions count
+        // count
         const count = await api.get("/prescriptions/count")
 
-        // get prescriptions count current week
+        // count current week
         const countCurrentWeek = await api.get("/prescriptions/count/week")
 
-        // get prescriptions count current month
+        // count current month
         const countCurrentMonth = await api.get("/prescriptions/count/month")
 
-        // return prescriptions count
         return {
             total: count.data,
             week: countCurrentWeek.data,
@@ -53,7 +50,7 @@ const getPrescriptionsCount = createAsyncThunk("prescriptions/count", async thun
 const getProductsCount = createAsyncThunk("products/count", async thunkAPI => {
     try {
         const count = await api.get("/products/count")
-        return count.data
+        return count.data.count
     } catch (error) {
         return error
     }

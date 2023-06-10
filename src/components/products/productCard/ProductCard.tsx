@@ -8,15 +8,15 @@ const ProductCard = ({ product, onPress }: { product: Product; onPress?: () => v
             <View style={productCardStyles.card}>
                 <View>
                     <View style={productCardStyles.cardContent}>
-                        <Image source={{ uri: product.image }} style={productCardStyles.image} />
+                        <Image source={{ uri: product.avatar }} style={productCardStyles.image} />
                         <View style={productCardStyles.details}>
                             <Text style={productCardStyles.name}>{product.name}</Text>
-                            <Text style={productCardStyles.type}>{product.type}</Text>
+                            <Text style={productCardStyles.type}>{product.dci}</Text>
                         </View>
                     </View>
                     <View style={productCardStyles.therapeuticClass}>
                         <Image source={require("../../../assets/images/Location.png")} style={{ marginRight: 5 }} />
-                        <Text style={productCardStyles.type}>{product.therapeuticClass}</Text>
+                        <Text style={productCardStyles.type}>{product.classTherapeutic}</Text>
                     </View>
                 </View>
                 <Image source={require("../../../assets/images/More.png")} />

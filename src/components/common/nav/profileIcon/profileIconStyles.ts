@@ -7,7 +7,6 @@ const profileIconStyles = StyleSheet.create({
         width: wp("10%"),
         height: hp("5%"),
         borderRadius: hp("2.5%"),
-        backgroundColor: "#FF5A5F",
         alignItems: "center",
         justifyContent: "center",
     },
